@@ -44,7 +44,7 @@ Send each group together. Read the results, then follow up on anything that name
 
 This is how you learn what the recorder did not capture: the fields above and below the screenshot, which are required, and the real validation rules.
 
-1. `files_for` with the feature words plus likely field names in camelCase ("FanVista branding title1 primaryColor subdomain"). Look for an entity, model or service file in the results.
+1. `files_for` with the feature words plus likely field names in camelCase (for example "FanVista branding title1 primaryColor subdomain"). Look for an entity, model or service file in the results.
 2. `code_slice` on that file (entities are short; services, read the `validate...` methods). The entity's columns are the full field list. The validation methods are the real rules and error conditions.
 3. For an option list (triggers, statuses, types), `resolve_symbol` on the enum name, then `code_slice`.
 4. `ask_brain` for behaviour questions, one narrow question per call, phrased as "How does X work" or "What happens when Y". Broad or list-style questions are misrouted to a design review; if the reply is a verdict rather than an answer, narrow the question and ask again. Use `depth: fast` first.
@@ -54,25 +54,17 @@ Take behaviour from the code. Never copy class, table or column names into the a
 ### B. Jira: the rules and the release status
 
 1. `searchJiraIssuesUsingJql` with the labels: `text ~ "\"Enable Fan Guest Login\"" OR text ~ "\"Configure Pickup Time\"" ORDER BY updated DESC`, fields `summary, status, description`, about 10 results.
-2. A feature search: `text ~ "fanvista" AND (summary ~ "<feature word>" OR text ~ "<feature word>") ORDER BY updated DESC`, fields `summary, status` first; then fetch the descriptions of the ones that matter with `key in (...)`.
-3. Planning items for the product: `project = CP AND summary ~ "fanvista" ORDER BY updated DESC`.
+2. A feature search: `text ~ "<product name>" AND (summary ~ "<feature word>" OR text ~ "<feature word>") ORDER BY updated DESC`, fields `summary, status` first; then fetch the descriptions of the ones that matter with `key in (...)`.
+3. Planning items for the product: `project = CP AND summary ~ "<product name>" ORDER BY updated DESC`. The pack may list further projects and queries.
 
 Use only **Released** items (also written RELEASED, Completed, Done, PASS on a test execution). Open, Discovery, Dev, Awaiting QA or UAT, On Hold, Partially Released and Discarded mean the feature does not exist for the reader. Ticket descriptions usually hold the exact rules: defaults, combinations that are not allowed, the wording of error messages, what a switch hides. Take those. Leave behind keys, customer names and investigation notes.
 
 ### C. Google Drive: the playbook and guides
 
-1. `search_files` with `fullText contains 'FanVista' and fullText contains '<feature word>'`, without snippets, then read the best two or three.
-2. Always check the standing documents below for the topic; reread any whose modified date is later than the snapshot date at the top of `fanvista-knowledge.md`.
+1. `search_files` with `fullText contains '<product name>' and fullText contains '<feature word>'`, without snippets, then read the best two or three.
+2. Always check the pack's standing documents for the topic; reread any whose modified date is later than the snapshot date at the top of the pack's `knowledge.md`.
 
-| Document | ID | Use it for |
-| --- | --- | --- |
-| Fanvista Playbook v2 | `1LiXEBJVt3HSG0kHdFGhwmu2xnvbySUo-R-qBs2HvSGk` | Main reference for setup and operations |
-| FanGuest quick start | `1eqZOJ5IgQSU92Pcmpldcvt169QFAHUQXHpcvC8Zydqs` | Shortest correct setup path for fan events |
-| Suite retail quick start | `1Q-qG0qV0ZrLt57J4cV78Zxj7xIdSm-Xhdyy3ijdmGzY` | Suite setup, per-suite stores, suite order flow |
-| FanVista_Setup_Wizard_PRD | `1fohnXDSeGfYjN2m0g7m3a_BxJ6g5UjyK3CaAWt7DVTY` | Step dependencies, field detail, test checklists. A spec; the released product may differ |
-| Fanvista feature documentation (2025) | `1x4yRPohPEs_ab5lP97YtUFvngjUaNEhWeYzGTS7Lm30` | Fan-side behaviour |
-| Open Items for FanVista | `1iRwpA8I0Ay--WBChcbXuIz4NRfHYjvjFbd7GfMtWYqE` | What is not built. Use only to keep unreleased features out |
-| Print Job Setup for Fanvista | `1RcVhtURcSjmsNLCDv5TwPY1ktrZTEwI79DU0i1Kw2cA` | Internal printer procedure. Contains credentials. Never publish |
+The product pack's `product.md` lists the standing documents for the product (playbooks, quick-start guides, specs) with their IDs. Read the ones that cover the topic.
 
 Meeting notes and recordings in Drive are internal discussion. Use them only to understand intent, never as a statement of what shipped.
 
@@ -123,10 +115,10 @@ In your chat notes, list each source with what it gave you and each source you c
 
 ## 7. Update the knowledge file
 
-When a search confirms or changes something in `fanvista-knowledge.md`:
+When a search confirms or changes something in the pack's `knowledge.md` (or there is no pack yet and you are building one, see `products/README.md`):
 
 1. Change the fact in the relevant section; keep it short and customer-oriented.
 2. Tag it correctly: no tag (confirmed), `[VERIFY]` (unconfirmed, internal to this file only), `[INTERNAL]` (true, never published).
-3. If a feature moved from unreleased to released, remove it from section 18.
+3. If a feature moved from unreleased to released, remove it from the not-released section.
 4. Update the snapshot date at the top.
-5. Add any new standing document to the table in section C above.
+5. Add any new standing document to the table in the pack's `product.md`.

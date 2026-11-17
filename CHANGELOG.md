@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.0 - 2026-11-17
+
+- Renamed to `help-desk-articles` and made product-neutral. The skill asks which product the writer is documenting.
+- Product packs under `products/`: FanVista is the first; `_template/` for new ones.
+- A product with no pack is researched from the connected sources and saved as a new pack.
+- Shared voice, template, research and publishing guides no longer assume FanVista.
+
 ## 1.3.0 - 2026-11-17
 
 - The only input is a PDF path, plus an optional line of context.

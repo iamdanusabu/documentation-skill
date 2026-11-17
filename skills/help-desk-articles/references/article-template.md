@@ -63,9 +63,9 @@ Questions as `###` headings, phrased the way a customer would ask, each answered
 
 | Reader | Sections |
 | --- | --- |
-| Venue admin, operations manager | All of them. |
+| Admin, operations manager | All of them. |
 | Fulfillment and kitchen staff | Opening, Before you start, Steps, If something goes wrong, Related articles. Add Rules to know only if there is one staff must not miss. |
-| Fan | Opening, Steps, then "If something goes wrong" as plain bullets. No callouts. Fold anything else into the steps. |
+| End customer (shopper, fan, guest) | Opening, Steps, then "If something goes wrong" as plain bullets. No callouts. Fold anything else into the steps. |
 
 Drop a section when it would be empty. Do not pad one to fill the template.
 
@@ -123,7 +123,7 @@ The article is published as you deliver it. It never contains `[VERIFY]`, `[SCRE
 
 ## Callouts
 
-One or two per page, placed at the step where they apply, never collected at the top. Reserve Warning for real traps. In FanVista these are mainly: the FanVista URL cannot be changed once created; the email receipt needs the Order Checkout trigger on first; no notification rule means no customer messages; no Fulfillment Location means no stock tracking and no dockets; items default to Retail; the deposit percentage must match the audience.
+One or two per page, placed at the step where they apply, never collected at the top. Reserve Warning for real traps: something that cannot be undone, fails silently, or breaks a later step. The product pack lists the known ones for its product.
 
 A callout ends a numbered list in Document360. Put it directly after its step and number the next step explicitly.
 
@@ -135,6 +135,8 @@ A callout ends a numbered list in Document360. Put it directly after its step an
 - **Troubleshooting in a how-to**: keep "If something goes wrong" to the 3 to 5 failures specific to this task, then point to the matching troubleshooting article. This is the first section to trim when a page runs long.
 
 ## Worked example
+
+From the FanVista pack. The structure and voice are the same for every product.
 
 ```markdown
 ---

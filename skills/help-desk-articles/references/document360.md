@@ -23,7 +23,7 @@ tags: fanvista, notifications, setup
 
 - **title** - the catalog title. Document360 shows it as the page heading, so the body has **no `#` heading**; body sections start at `##`.
 - **slug** - kebab-case of the title. Keep it stable once published.
-- **category** - `FanVista > <catalog section name>` (Getting started, One-time setup, Events and menus, Suites, Food and beverage, Event day, For fans, Insights and sponsorship, Troubleshooting). The user can remap these to their real category tree.
+- **category** - `<Product> > <section>`, using the section names in the product pack's catalog. With no catalog, use a plain section name such as Getting started, Setup, Daily use, Reports or Troubleshooting. The publisher can remap these to the real category tree.
 - **description** - one sentence, under about 160 characters, for search results and SEO.
 - **tags** - three to six lowercase terms a customer would search.
 

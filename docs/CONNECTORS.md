@@ -8,7 +8,7 @@ The skill does its own research. When you start it, it loads the connectors belo
 | --- | --- | --- |
 | **Brain** | The fields, rules and validation behind each screen (from the code), internal solution notes, and past support tickets | Articles lose the detail the PDF does not show. The most important one to have. |
 | **Atlassian** (Jira and Confluence) | Rules, defaults and error messages from released tickets, and whether a feature is released at all | The skill cannot tell released from unreleased, so it stays with the bundled knowledge |
-| **Google Drive** | The current FanVista playbook and quick-start guides | Falls back to the knowledge snapshot bundled with the skill |
+| **Google Drive** | Each product's playbook and guides | Falls back to the knowledge snapshot bundled with the skill |
 | Support desk (optional) | What customers actually ask about | Troubleshooting sections are thinner |
 
 ## Turn them on (once per person)
@@ -38,4 +38,4 @@ Some Brain questions take minutes. If you see timeouts in Claude Code, raise the
 
 ## Checking by hand
 
-Ask Claude: "Check which FanVista sources are connected." The skill runs its connection check and reports the result without writing anything.
+Ask Claude: "Check which help article sources are connected." The skill runs its connection check and reports the result without writing anything.

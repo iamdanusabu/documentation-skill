@@ -1,10 +1,10 @@
 # Voice and tone
 
-Every FanVista article should sound as if one person wrote it, whoever actually did. This file is the single authority on wording. Where another file in the skill appears to differ, this one wins.
+Every article should sound as if one person wrote it, whoever actually did. This file is the single authority on wording. Where another file in the skill appears to differ, this one wins.
 
 ## The voice in one paragraph
 
-A calm, capable colleague who has set FanVista up many times, sitting next to the reader. They say what to do, in the order to do it, in plain words. They take a sentence to explain what a setting is for and what the fan will see because of it, so the reader understands the choice and is not just clicking. They mention the one thing that will trip you up, at the moment it matters. They are warm through being helpful, not through chattiness. They do not sell, apologise, joke, or explain how the software is built.
+A calm, capable colleague who has set the product up many times, sitting next to the reader. They say what to do, in the order to do it, in plain words. They take a sentence to explain what a setting is for and what their own customers will see because of it, so the reader understands the choice and is not just clicking. They mention the one thing that will trip you up, at the moment it matters. They are warm through being helpful, not through chattiness. They do not sell, apologise, joke, or explain how the software is built.
 
 ## Five rules
 
@@ -54,42 +54,28 @@ Use the same verb for the same kind of control, every time.
 | Page or screen | go to, open | navigate to, access, visit |
 | File | upload | add, attach, import |
 | QR code or barcode | scan | read |
-| Order status in OrderUp | mark the order **Ready** | set, flag, change to |
 | Physical action | put, take, pick, pack, hand over, show | (any plain verb is fine) |
 
-Fan articles are the one exception: fans are on phones, so use **tap** in place of **select**.
+Articles for end customers on phones (for example fans ordering) are the one exception: use **tap** in place of **select**.
 
 ## Words we use
 
+These apply to every product. Each product pack adds its own terms in `products/<product>/product.md` (product names, what to call the end customer, feature names). Read both.
+
 | Write | Not |
 | --- | --- |
-| FanVista | Fanvista, Fan Vista, FV, the app (on first mention) |
 | Retail Console | console, back office, portal, RC |
-| OrderUp | Orderup, Order Up |
-| Kitchen Display System (KDS) on first use, then KDS | kitchen screen system |
-| Quickpick menu | QP, quick pick, menu system |
-| fan | customer, user, guest, patron, consumer (for someone ordering without a suite) |
-| suite owner | suite holder, suite customer, VIP |
-| you, your venue | merchant, operator, client, tenant |
+| you, your business (or the word the product pack gives, such as your venue) | merchant, operator, client, tenant |
 | staff | employees, agents, associates, runners |
-| event | game, match, show, concert (unless quoting an example) |
-| event day | game day, match day (see note below) |
 | order | transaction, ticket, cart (once placed) |
-| docket | ticket, chit, slip, print job (for the printout at the counter) |
-| customer receipt, delivery receipt | bag slip, label |
-| pickup | pick-up, collection, click and collect |
-| in-seat delivery (bold, as on screen, when naming the option the reader selects) | seat delivery, delivery (alone) |
 | stock on hand | QOH, inventory level |
-| sold out | out of stock, unavailable, 86'd |
-| food and beverage (food and drinks in fan articles) | F&B, concessions |
-| merchandise | merch, retail goods |
 | set up (verb), setup (noun) | set-up |
 | sign in | log in, login, log on |
 | turn on | enable, activate, switch on |
 | retailcloud Support | support team, helpdesk, us, our team |
 | retailcloud (lowercase r) | RetailCloud, Retail Cloud |
 
-"Event day" is the standard term. If the request says "game day", use it once in the opening sentence so the page is found by that search, then use "event day".
+When the request uses a term the word lists avoid, use it once in the opening sentence so the page is found by that search, then use the standard term.
 
 ## Words we do not use
 
@@ -108,12 +94,8 @@ Reuse these word for word so the same situation always reads the same way.
 
 | Situation | Sentence |
 | --- | --- |
-| Feature must be activated | "FanVista is activated on your account by retailcloud. If you do not see **FanVista** in the Retail Console, contact retailcloud Support." |
 | Something only retailcloud can do | "retailcloud sets this up for you. Contact retailcloud Support to request it." |
 | Escalation for venue staff or admins | "If the problem continues, contact retailcloud Support." |
-| Repeated for every order | "The steps are the same for every order." |
-| Escalation for fulfillment staff | "Tell your manager." |
-| Escalation for fans | "Ask a member of venue staff." |
 | One-time task | "You do this once for your venue. It applies to every event." |
 | Per-event task | "Repeat these steps for each event." |
 | Confirming success | "To confirm it worked, ..." |
@@ -132,10 +114,10 @@ The voice stays the same. Only the density changes.
 
 | Reader | Adjust like this |
 | --- | --- |
-| Venue admin | Full template. Include the reason behind settings and the consequences of each option. |
+| Admin (owner, manager, venue admin) | Full template. Include the reason behind settings and the consequences of each option. |
 | Operations manager | Full template. Lean toward per-event tasks and checklists. |
 | Fulfillment and kitchen staff | Shorter steps, physical actions first ("Put the receipt inside the bag"). No setup detail - send them to their manager. |
-| Fan | Shortest of all. Steps and a brief problem list only. No venue-side terms (docket, Quickpick, fulfillment location). |
+| End customer (shopper, fan, guest) | Shortest of all. Steps and a brief problem list only. No back-office terms. When they are stuck, send them to the business's staff, never to retailcloud Support. |
 
 ## Before and after
 
@@ -154,9 +136,9 @@ Read the draft once looking only for these:
 
 1. Does every step that names a control use the verb from the interface table? (A step may also open with "Optional:", with what the reader sees, or with a physical action.)
 2. Is every bold phrase an on-screen label, and is every on-screen label bold?
-3. Any word from "Words we do not use"? Any term from the right-hand column of "Words we use"?
+3. Any word from "Words we do not use"? Any term from the right-hand column of "Words we use", here or in the product pack?
 4. Any contraction, exclamation mark, dash between clauses, "we", or "please"?
 5. Did each recurring situation use its standard sentence?
 6. Would a reader in a hurry know what to do from the steps alone?
-7. Would a reader new to FanVista understand why each setting matters and what their fans will see?
+7. Would a reader new to the product understand why each setting matters and what their customers will see?
 8. Is the article free of placeholders, questions and notes to the writer?

@@ -2,7 +2,7 @@
 
 The planned FanVista help set, in the order a new venue needs it: understand it, set it up once, set up an event, run event day, then the extras. Titles here are the canonical ones - use them for cross-links so links stay consistent as articles are written.
 
-"Knowledge" points to sections of `fanvista-knowledge.md`. Reader: **A** = venue admin, **O** = operations manager, **S** = fulfillment or kitchen staff, **F** = fan or suite owner.
+"Knowledge" points to sections of the pack's `knowledge.md`. Reader: **A** = venue admin, **O** = operations manager, **S** = fulfillment or kitchen staff, **F** = fan or suite owner.
 
 ## 1. Getting started
 
