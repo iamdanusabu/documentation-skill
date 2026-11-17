@@ -78,7 +78,8 @@ What happens next, without further input from you:
 2. It reads every screen in the PDF.
 3. It researches the topic: the code behind the screen, released tickets, the product's playbook, past support questions.
 4. It writes the guide in the house voice, cuts the screenshots from the PDF, and builds the Word, preview and Markdown files.
-5. It tells you which sources it used and anything it could not confirm.
+5. It checks the article against the voice rules automatically and fixes what the check finds.
+6. It tells you which sources it used and anything it could not confirm.
 
 Other things it does:
 
@@ -97,8 +98,7 @@ skills/help-desk-articles/
   SKILL.md                      the workflow Claude follows
   references/                   shared by every product
     voice-and-tone.md           the house voice
-    article-template.md         page structures, level of detail, images
-    document360.md              publishing format
+    article-template.md         file format, page structures, level of detail, images, callouts
     research.md                 connecting to sources, the searches, what to trust
   products/
     README.md                   list of packs; how to work without one; how to add one
@@ -106,10 +106,12 @@ skills/help-desk-articles/
     fanvista/                   product.md, knowledge.md, catalog.md, examples/
   scripts/
     pdf_images.py               extracts, crops and trims images from a PDF
-    build_article.py            builds the Word file and preview page
+    check_article.py            checks an article against the voice and publishing rules
+    build_article.py            runs the check, then builds the Word file and preview page
 dist/help-desk-articles.skill   packaged skill for upload
 .claude-plugin/                 plugin and marketplace manifests
 docs/CONNECTORS.md              turning on Brain, Atlassian and Drive
+docs/PUBLISHING.md              getting an article and its images into Document360
 install.ps1, install.sh, build.sh
 ```
 
@@ -117,7 +119,7 @@ install.ps1, install.sh, build.sh
 
 - **Only FanVista has a pack.** The first article for any other product takes longer and depends entirely on the connectors.
 - **Screen labels come from the PDF.** Without a PDF, labels are only as good as the pack.
-- **Document360 callout syntax and Word import** have not been confirmed in a live project. If either misbehaves, correct `references/document360.md`.
+- **Document360 callout syntax and Word import** have not been confirmed in a live project. See [docs/PUBLISHING.md](docs/PUBLISHING.md).
 - **The skill cannot draw on images.**
 
 ## Keeping it current

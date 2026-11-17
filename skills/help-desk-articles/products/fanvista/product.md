@@ -39,6 +39,7 @@
 
 | Situation | Sentence |
 | --- | --- |
+| One-time task | "You do this once for your venue. It applies to every event." |
 | Activation | "FanVista is activated on your account by retailcloud. If you do not see **FanVista** in the Retail Console, contact retailcloud Support." |
 | Escalation for fulfillment staff | "Tell your manager." |
 | Escalation for fans | "Ask a member of venue staff." |

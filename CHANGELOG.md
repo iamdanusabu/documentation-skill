@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.1.0 - 2026-11-17
+
+- Leaner: the guides the skill loads for every article are about 60% shorter, and long files are read by section.
+- Images are read at reduced size; repeats of the same screen are reduced to their step text.
+- New fact-sheet step: every statement in an article traces to a source before drafting.
+- New `check_article.py`: voice and publishing rules checked by script, run automatically by the build.
+- Research capped at one round plus one follow-up, with result limits.
+- Publishing notes moved to `docs/PUBLISHING.md`.
+
 ## 2.0.0 - 2026-11-17
 
 - Renamed to `help-desk-articles` and made product-neutral. The skill asks which product the writer is documenting.

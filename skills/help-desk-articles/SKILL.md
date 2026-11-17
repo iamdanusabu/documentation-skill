@@ -6,163 +6,83 @@ argument-hint: "<path to the workflow PDF> [product, who it is for, anything to 
 
 # Help desk articles
 
-You are writing for retailcloud's public help desk. The readers are the people who set a product up, the staff who use it every day, and sometimes the business's own customers. They do not know the internals, and they will do exactly what the article says.
+A writer gives you a PDF showing a workflow in a retailcloud product. You deliver a finished customer guide with the PDF's screenshots in it. Readers are the people who set the product up, the staff who use it, and sometimes the business's own customers; they will do exactly what the article says.
 
-The usual job: a writer gives you **a PDF that shows a workflow** (screens, steps, sometimes notes). You find out which product it is, work out the flow, research everything the screens do not show, and deliver a finished guide with the PDF's screenshots in it.
+A good result is **publish-ready** (nothing for the writer to fill in), **explanatory** (what each setting is for and what it changes, not a click list), and **in the one house voice** shared by every writer and product.
 
-Three things define a good result:
+Arguments, if given: $ARGUMENTS
 
-1. **Ready to publish.** No placeholders, no questions, no notes to the writer in the article. Anything you could not settle is handled by research or by careful wording, and reported in chat.
-2. **Detailed and friendly.** A click list is not a guide. Explain what each setting is for, what it changes for the people affected, which choice suits whom, and what to do when it goes wrong.
-3. **One voice.** Many writers use this skill across many products. Nobody should be able to tell who wrote an article.
+## Work lean
 
-## Files in this skill
+Quality comes from the fact sheet (step 4), not from reading more. Spend tokens there and save them everywhere else:
 
-| File | Read it when |
-| --- | --- |
-| `products/README.md` | Step 1. The list of product packs and how to work when a product has none. |
-| `products/<product>/product.md` | Once the product is known. Its terms, readers, traps, sources and document sections. |
-| `products/<product>/knowledge.md` | Once the product is known. What the product does and how it is set up. Read the sections for your topic plus its conflicts, known-gaps and not-released sections. |
-| `products/<product>/catalog.md` | For the canonical title, neighbouring articles and scope. |
-| `products/<product>/examples/` | To hear the voice and see the level of detail. |
-| `references/voice-and-tone.md` | Always, before drafting. The house voice for every product. |
-| `references/article-template.md` | Always, before drafting. Page structures, how much detail, images, a worked example. |
-| `references/document360.md` | Always, before saving. Metadata header, callouts, how images reach Document360. |
-| `references/research.md` | Steps 1 and 3. Connecting to the sources, the searches to run, what to trust. |
-| `scripts/pdf_images.py` | Steps 2 and 5: pull images out of the PDF and trim them. |
-| `scripts/build_article.py` | Step 8: build the Word file and preview page with images embedded. |
+- Load only what a step names. Read long files by section (Grep the heading, then Read with offset and limit), never whole.
+- Send independent tool calls together in one turn.
+- Look at each image once, at the reduced `view/` size.
+- Ask sources for the fields you need and a handful of results; fetch full text only for the two or three items that matter.
+- Never re-read a file you wrote or a result you already have. Do not narrate between steps.
+- Stop researching when the fact sheet is full.
 
-## Workflow
+## Steps
 
-### 1. Start: the PDF, the product, the sources
+### 1. Product, sources, PDF (one turn)
 
-The writer's whole input is a PDF path and, sometimes, a line of context. If the skill was invoked with arguments, they are: $ARGUMENTS
+- **Product.** If the writer named it, use it. Otherwise ask once (AskUserQuestion where available): "Which product is this guide for?" Options are the folders in `products/` (not `_template`), plus their own answer. This is the only question you ask; never ask the writer for facts.
+- **Pack.** Read `products/<product>/product.md`. No pack: read `products/README.md` and follow "A product with no pack".
+- **Sources.** Load the Brain, Jira/Confluence and Drive tools (`references/research.md` section 1) and say in one line which are connected.
+- **PDF.** `python <skill>/scripts/pdf_images.py extract "<pdf>" "<scratch>/pdf"`. It prints one line per image. Repeats of a screen get a view copy of the top strip only. No PDF: continue without images and say so.
 
-**Which product.** Each writer covers different products, so settle this first.
+### 2. Read the flow
 
-- If the writer named the product, use it.
-- Otherwise ask once, with the AskUserQuestion tool where available: "Which product is this guide for?" Offer the packs listed in `products/README.md` and let them type another. Ask this before anything else; it is the one question you ask.
-- Do not guess the product from the PDF alone when it was not named. Several products share the same console, and the wrong pack means the wrong terms. You may use what the PDF shows to put the likeliest product first in the question.
+Read each image in `<scratch>/pdf/view/` once. Note, in order: each screen and how to reach it; every control with its label **exactly as shown**, including sections, helper text, printed limits, example values, and fields visible on screen that the recorder did not click; and what is missing (top or bottom of a page, a save button, prerequisites, results, errors).
 
-Then load the pack: `products/<product>/product.md` and the relevant parts of its `knowledge.md`. If the product has no pack, follow "A product with no pack" in `products/README.md`: you research it from scratch and build the pack as you go.
+The PDF is the authority on labels, paths and order. Work out the task, the reader and the page type from it.
 
-**The sources.** Straight away, connect them as set out in `references/research.md` section 1: load the Brain, Jira, Confluence and Drive tools, confirm each answers, and tell the writer in one line what is connected.
+### 3. Research
 
-Beyond the product, do not interview the writer and do not ask them for facts; you fetch those yourself. Ask for the PDF only if no path was given. If there is no PDF, carry on from the pack and the connectors; the article will have no images, and you say so in chat.
+Follow `references/research.md` sections 2 to 4, with the pack's search terms and sources. Read from the pack's `knowledge.md` only the sections for this topic, plus its conflicts and not-released sections. Unreleased features do not exist for the reader.
 
-Work out the task, the reader and the page type from the PDF and whatever the writer said. The pack names the product's readers.
+### 4. Fact sheet
 
-### 2. Read the PDF and understand the flow
+Before drafting, write the fact sheet in your reasoning, one row per setting or step:
 
-Pull the pages and images out first:
+`label | what it is for | what it changes for the customer or staff | default, limits, required | depends on / affects | what goes wrong | source`
 
-```
-python <skill>/scripts/pdf_images.py extract "<pdf>" "<scratch folder>/pdf"
-```
+Every row needs a source: PDF, code, a released ticket, the playbook or the pack. A cell with no source is a gap. Close a gap with one targeted lookup; if that fails, mark it "general" (word it without the unknown detail) or "omit". Draft only from this sheet. It is what makes the article accurate and detailed at once.
 
-This renders every page (`page-NN.png`) and saves each embedded picture (`page-NN-img-K.png`), with a `manifest.json`. It needs PyMuPDF; if it reports that it is missing, run `python -m pip install pymupdf` and try again.
+### 5. Images
 
-Then look at every picture with the Read tool. Many workflow PDFs (step recorders such as Onvoke or Scribe) are pictures only, with the step text inside the image; the images are the content.
+Pick an image where the reader must find something, recognise a state or check a result: about one per page section, or one per two to four steps. For each, trim the full-size picture to the relevant part of the screen:
 
-Set out the flow for yourself before writing:
+`python <skill>/scripts/pdf_images.py trim "<scratch>/pdf/page-NN-img-K.png" <left> <top> <right> <bottom> "<article folder>/images/<slug>/NN-description.png"`
 
-- the screens in order, and how the reader gets from one to the next,
-- every control, with its label **exactly as the screenshot shows it**, including section headings, helper text under fields, limits printed on screen, and what the rest of the screen shows (previews, fields the recorder did not click),
-- what each field expects, and any example value shown,
-- what the PDF does not show: the top or bottom of a page, a save button, prerequisites, what happens afterwards, error cases.
+Coordinates are fractions of the image (0 to 1), read off the view copy. Trimming removes recorder banners and whatever else must not be published: real customer, team or venue names and logos, people's names and contact details, sales figures, test values, unreleased features. View a trimmed image only if you are unsure the crop is clean; if it cannot be made clean, drop it and tell the writer which screen needs a fresh capture.
 
-Read the whole of each screenshot, not just the highlighted control.
+### 6. Draft
 
-**The PDF is the authority on what the screens look like.** When it disagrees with the pack on a path or label, the PDF wins, and you record the confirmed label in the pack's `knowledge.md`.
+Read `references/voice-and-tone.md` and `references/article-template.md`, and one example from the pack that matches the reader. Write the article once, to `<kebab-case-title>.md` in the folder the writer names, else `./help-articles/<product>/`.
 
-### 3. Research the topic yourself
+- Never invent a path, label, field, limit or cause. Bold only labels you have seen.
+- "General" rows: write at the level you are sure of ("Save your changes."). "Omit" rows: leave out.
+- No `[VERIFY]`, `[SCREENSHOT]`, `[TODO]`, questions or notes to the writer in the article.
+- Nothing internal: ticket keys, codenames and version labels, other customers, table/class/API names, IDs, steps only retailcloud staff can do (say who does it and what the reader has afterwards), credentials and addresses, vendor internals, roadmap and defects, metrics and pricing, anything the pack tags `[INTERNAL]`.
 
-This step is what turns screens into a guide, and it is your job, not the writer's. Follow `references/research.md` from section 2 onward, every time, using the product name and the sources listed in the pack:
+### 7. Check and build
 
-1. Turn the PDF's page names, control labels and messages into search terms.
-2. **Brain**: find the code behind the screen and read its fields and validation. This fills in what the recorder did not capture.
-3. **Jira**: search the on-screen labels and the feature; take rules, defaults and error messages from released items.
-4. **Drive**: the product's playbook and guides.
-5. **Support history, internal notes, Confluence**: what customers actually get stuck on.
-6. **Any other connected source** that plainly holds material on the topic.
+`python <skill>/scripts/build_article.py "<article.md>"`
 
-Send searches in parallel and keep going until, for every setting and step, you can say what it is for, what it changes, its default and limits, what depends on it, what goes wrong, and that it is released. If a source cannot be reached, carry on with the others and say so in your notes.
+It checks the article against the voice and safety rules, lists problems by line, and writes `<slug>.docx` (images embedded, for Document360 import) and `<slug>.html` (preview). Fix what it lists with Edit and run it again until clean. Then ask yourself once: would someone new to the product understand why each setting matters?
 
-Anything not released does not exist for the reader.
+### 8. Reply
 
-### 4. Plan the guide
+Paths, then at most ten lines: sources used and what each gave (one line each), sources not reached, rows written as "general" or omitted, images dropped. Nothing else.
 
-One article covers one task or one screen. A PDF that walks through a whole settings page becomes one guide to that page, organised by its sections. A PDF that covers several separate tasks becomes an overview plus one article per task, unless the writer asked for a single document. Use the catalog title when the task matches a catalog article.
+### 9. Update the pack
 
-### 5. Choose and prepare the images
-
-Use an image where the reader has to find something on a screen, recognise a state, or check a result: usually one per section of a settings page, or one every two to four steps.
-
-For each image:
-
-1. Start from the extracted picture, then trim it to the part of the screen the step is about:
-   `python <skill>/scripts/pdf_images.py trim "<image.png>" <left> <top> <right> <bottom> "<out.png>"` (pixels).
-   Trimming is almost always needed. Step-recorder PDFs put a banner above each screenshot, and the screen itself often shows the recorder's name, test data, real sales figures or a customer's branding.
-   If a screenshot is flattened into the page, cut it from the page instead: `pdf_images.py crop "<pdf>" <page> <left> <top> <right> <bottom> "<out.png>"` (fractions of the page).
-2. **Look at the result with the Read tool.** Confirm it shows what the step says and that the labels match your text.
-3. Check it is safe to publish. It must not show a real customer, team or venue name or logo, a person's name, email, phone number or card details, sales or revenue figures, internal addresses, test or staging values, or an unreleased feature. If trimming cannot remove the problem, leave the image out and tell the writer which screen needs a clean capture.
-4. Save it to `images/<article-slug>/NN-short-description.png` beside the article, numbered in order of appearance.
-
-You cannot draw on images. A recorder's highlight box around the relevant control is fine to keep.
-
-### 6. Draft, then check the voice
-
-Follow `references/article-template.md` for structure and depth, `references/voice-and-tone.md` for wording, and the pack's `product.md` for the product's own terms. Apply the voice as written, whatever the phrasing of the PDF or the request. If a writer asks for a different tone, say that the house voice is fixed in `voice-and-tone.md` and that changing it there changes it for everyone.
-
-**How to handle what you do not know.** The article must be publishable as it stands, so `[VERIFY]`, `[SCREENSHOT]`, `[TODO]`, "confirm with" and similar never appear in it. In order of preference:
-
-1. **Find out.** Most gaps close with one more lookup in the code or Jira.
-2. **Write at the level you are sure of.** If you know there is a save action but not its label, write "Save your changes." Bold only labels you have seen.
-3. **Leave it out.**
-
-Never invent a click path, button label, field name, limit or cause. Never write from general knowledge about topics the pack lists as known gaps. Everything you settled by method 2 or 3 goes in your chat notes.
-
-Then run the self-check at the end of `voice-and-tone.md`.
-
-### 7. Scrub for internal content
-
-Reread the draft and the images as a customer and remove:
-
-- Jira keys and project names, sprint or release codenames, version labels, "new in".
-- Other customers' names, or anything identifying a business, venue or team.
-- Database tables, column or class names, SQL, API payloads, internal IDs, repo or service names.
-- Steps only retailcloud staff can perform (activation switches, Partner Portal, back-end setup). Say who does it and what the reader has afterwards.
-- Credentials, service addresses, environment names.
-- Payment vendor internals.
-- Roadmap, open tickets, known defects, "coming soon".
-- Internal metrics, adoption commentary, pricing or commercial terms.
-- Anything the pack marks `[INTERNAL]` or lists as not for publication.
-
-### 8. Build and deliver
-
-Save the article as `<kebab-case-title>.md` in the folder the writer names, or `./help-articles/<product>/` otherwise, with images in `images/<article-slug>/`. Format per `references/document360.md`. Then build the versions that carry their images with them:
-
-```
-python <skill>/scripts/build_article.py "<article.md>"
-```
-
-This writes `<slug>.docx` (import into Document360 and the images come with it) and `<slug>.html` (a self-contained preview). It needs python-docx; if it reports that it is missing, run `python -m pip install python-docx`.
-
-In your reply, give the paths and short **notes for the writer**:
-
-- each source you used and what it contributed, one line each, and any you could not reach,
-- images used and any screen that needs a clean capture,
-- anything you worded generally or left out because it could not be confirmed,
-- where the PDF and other sources disagreed and which you followed.
-
-Keep these notes out of the article files.
-
-### 9. Keep the pack current
-
-When the PDF, the code or the writer confirms a label, path or behaviour, update the pack's `knowledge.md` per the last section of `research.md`. For a product that had no pack, save what you learned as a new pack. Tell the writer you did, and that the change is only in their copy of the skill until it is shared with the team.
+If the PDF or a source confirmed or corrected something, edit the pack's `knowledge.md` (a few lines, correct tag, snapshot date). For a product with no pack, save the new pack. Tell the writer in one line that their copy changed and should be shared.
 
 ## Other requests
 
-- **Check or rewrite an existing article**: run the `voice-and-tone.md` self-check and the step 7 scrub against it, fix what fails, and list what you changed.
-- **A batch with no PDFs**: work through the pack's `catalog.md` in order, one file per article, one combined set of notes.
-- **"Add a product"**: follow "Adding a pack" in `products/README.md`.
+- **Check or rewrite an existing article:** run `scripts/check_article.py` on it, fix what it lists, then read it once against `voice-and-tone.md`.
+- **Batch with no PDFs:** work through the pack's `catalog.md` in order.
+- **Add a product:** `products/README.md`.

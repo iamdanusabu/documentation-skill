@@ -3,6 +3,8 @@
 
   python build_article.py <article.md> [--out-dir <folder>]
 
+Runs check_article.py first and prints anything to fix.
+
 Writes, next to the article (or into --out-dir):
   <slug>.docx   Word file with every image embedded. Import this into
                 Document360 (Create article > Import from Word) and the
@@ -287,9 +289,15 @@ def main():
     os.makedirs(out_dir, exist_ok=True)
     slug = meta.get("slug") or os.path.splitext(os.path.basename(args.article))[0]
 
-    leftovers = [m for m in ("[VERIFY", "[SCREENSHOT") if any(m in str(b) for b in blocks)]
-    if leftovers:
-        print("Warning: the article still contains", " and ".join(leftovers), "markers.")
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from check_article import check
+        problems = check(args.article)
+        for number, message in problems:
+            print(f"line {number}: {message}")
+        print(f"{len(problems)} to fix." if problems else "Check: clean.")
+    except Exception as error:
+        print("Check skipped:", error)
 
     docx_path = os.path.join(out_dir, slug + ".docx")
     html_path = os.path.join(out_dir, slug + ".html")

@@ -1,124 +1,54 @@
-# Research protocol
+# Research
 
-The writer gives you a PDF and perhaps a line of context. Everything else in the article comes from here. Run this every time; do not wait to be asked, and do not ask the writer for facts a connected source can supply.
+Your job, every time. The writer supplies a PDF; the facts come from here.
 
-## 1. Connect: find and load the sources
+## 1. Connect
 
-The sources are MCP connectors. Their tool names differ between installs (`mcp__claude_ai_Brain__ask_brain`, `mcp__plugin_..._atlassian__...`, or plain names in the Claude apps), so match on the server and the short tool name, not the full name.
+Tool names vary by install, so match on server and short name. If tools are deferred, load them in one ToolSearch call:
 
-If the session defers tools (Claude Code shows them by name only), load them first with ToolSearch, all in one go:
-
-| Source | ToolSearch keywords | Short tool names you need |
+| Source | Search | Tools you need |
 | --- | --- | --- |
-| Brain | `brain` | `files_for`, `code_slice`, `resolve_symbol`, `ask_brain`, `custom_docs_search`, `custom_docs_article`, `support_search`, `table_schema` |
-| Jira and Confluence | `jira`, `confluence`, `atlassian` | `searchJiraIssuesUsingJql`, `getJiraIssue`, `search`, `getConfluenceContent`, `getAccessibleAtlassianResources` |
-| Google Drive | `drive` | `search_files`, `read_file_content` |
-| Support desk | `desk`, `ticket` | `searchTickets`, `getTicket`, `getTicketConversations` |
-| Meetings | `meeting` | `list_meetings`, `get_meeting` |
+| Brain | `brain` | `files_for`, `code_slice`, `resolve_symbol`, `ask_brain`, `custom_docs_search`, `custom_docs_article`, `support_search` |
+| Jira, Confluence | `atlassian jira` | `searchJiraIssuesUsingJql`, `search`, `getConfluenceContent` |
+| Drive | `drive` | `search_files`, `read_file_content` |
+| Support desk (optional) | `desk` | `searchTickets`, `getTicketConversations` |
 
-Then make one cheap call to each to confirm it answers (Brain `brain_status` is large, so prefer a small `custom_docs_search`; Atlassian `getAccessibleAtlassianResources`; Drive a one-result `search_files`).
+Atlassian site: `retailcloud.atlassian.net`. A tool that loads is connected; do not spend calls testing. Report one line ("Connected: Brain, Jira, Drive. Not available: support desk.") and carry on. If Brain, Jira or Drive is missing, add: "Turn it on under Settings > Connectors, or run /mcp to sign in."
 
-Tell the writer the result in one line, for example: "Connected: Brain, Jira, Confluence, Drive. Not available: support desk." Then carry on. Do not stop for a missing source. If a core source (Brain, Jira, Drive) is missing, add one sentence on how to connect it:
+## 2. Search terms
 
-- In the Claude apps and Claude Code signed in with the retailcloud account: **Settings > Connectors**, turn the connector on, and sign in when asked. Connectors turned on there are available in Claude Code automatically.
-- If a connector shows "needs authentication", the writer signs in once; in Claude Code, `/mcp` lists the servers and starts the sign-in.
+From the PDF: page and section names, every control label, any message text, and the words a developer would use for the feature. Exact labels in quotes are the best query you have.
 
-Jira and Confluence calls need the site: `retailcloud.atlassian.net`.
+## 3. Searches
 
-## 2. Turn the PDF into search terms
+Send A to D together in one turn. Then at most one follow-up round for fact-sheet gaps.
 
-From the flow you set out in SKILL.md step 2, list:
+**A. Brain, the code behind the screen.** `files_for` with feature words plus likely camelCase field names, limit 8. `code_slice` the entity (its columns are the full field list, including what the recorder missed) and only the `validate...` methods of the service (the real rules and errors). For an option list, `resolve_symbol` the enum. `ask_brain` only for a behaviour question the code did not answer: one narrow "How does X work" per call, `depth: fast`; a reply that is a verdict means the question was too broad. Never put class, table or column names in the article.
 
-- the **page and section names** on screen ("Setup", "Login Options", "Delivery Method"),
-- every **control label** ("Enable Fan Guest Login", "Configure Pickup Time"),
-- any **message text** shown,
-- the **feature words** a developer or product manager would use for it ("branding", "pickup time", "subdomain", "suite management").
+**B. Jira.** One query on the labels: `text ~ "\"<Label one>\"" OR text ~ "\"<Label two>\"" ORDER BY updated DESC`, `maxResults` 8, fields `summary,status,description`. One on the feature: `text ~ "<product>" AND summary ~ "<feature word>"`, `maxResults` 15, fields `summary,status` only; then fetch descriptions for at most three with `key in (...)`. Use only Released items (Released, Completed, Done, PASS). Descriptions carry defaults, forbidden combinations, error wording and what a switch hides.
 
-These are your queries. Exact on-screen labels in quotes are the most productive search you can run.
+**C. Drive.** The pack lists the product's standing documents. Read one only if its modified date is later than the pack's snapshot date (check with a `search_files` on the title, `excludeContentSnippets: true`); otherwise the pack already holds it. For a topic the pack does not cover, one search `fullText contains '<product>' and fullText contains '<feature word>'` without snippets, and read the best one.
 
-## 3. Run the searches
+**D. Problems customers hit.** Brain `support_search` and `custom_docs_search`, limit 3, in plain words. If support history answers "access is none", note it and move on. Take the pattern of a problem, never the customer or their details.
 
-Send each group together. Read the results, then follow up on anything that names a rule, a default, a limit or an error.
+**E. Other connectors.** One targeted search, only if a connector plainly holds material on this topic.
 
-### A. Brain: the code behind the screen
+## 4. Done when
 
-This is how you learn what the recorder did not capture: the fields above and below the screenshot, which are required, and the real validation rules.
+Every fact-sheet row has a source for: purpose, effect, default and limits, dependencies, failure, and released status. Remaining gaps become "general" or "omit". Do not start a third round.
 
-1. `files_for` with the feature words plus likely field names in camelCase (for example "FanVista branding title1 primaryColor subdomain"). Look for an entity, model or service file in the results.
-2. `code_slice` on that file (entities are short; services, read the `validate...` methods). The entity's columns are the full field list. The validation methods are the real rules and error conditions.
-3. For an option list (triggers, statuses, types), `resolve_symbol` on the enum name, then `code_slice`.
-4. `ask_brain` for behaviour questions, one narrow question per call, phrased as "How does X work" or "What happens when Y". Broad or list-style questions are misrouted to a design review; if the reply is a verdict rather than an answer, narrow the question and ask again. Use `depth: fast` first.
-
-Take behaviour from the code. Never copy class, table or column names into the article.
-
-### B. Jira: the rules and the release status
-
-1. `searchJiraIssuesUsingJql` with the labels: `text ~ "\"Enable Fan Guest Login\"" OR text ~ "\"Configure Pickup Time\"" ORDER BY updated DESC`, fields `summary, status, description`, about 10 results.
-2. A feature search: `text ~ "<product name>" AND (summary ~ "<feature word>" OR text ~ "<feature word>") ORDER BY updated DESC`, fields `summary, status` first; then fetch the descriptions of the ones that matter with `key in (...)`.
-3. Planning items for the product: `project = CP AND summary ~ "<product name>" ORDER BY updated DESC`. The pack may list further projects and queries.
-
-Use only **Released** items (also written RELEASED, Completed, Done, PASS on a test execution). Open, Discovery, Dev, Awaiting QA or UAT, On Hold, Partially Released and Discarded mean the feature does not exist for the reader. Ticket descriptions usually hold the exact rules: defaults, combinations that are not allowed, the wording of error messages, what a switch hides. Take those. Leave behind keys, customer names and investigation notes.
-
-### C. Google Drive: the playbook and guides
-
-1. `search_files` with `fullText contains '<product name>' and fullText contains '<feature word>'`, without snippets, then read the best two or three.
-2. Always check the pack's standing documents for the topic; reread any whose modified date is later than the snapshot date at the top of the pack's `knowledge.md`.
-
-The product pack's `product.md` lists the standing documents for the product (playbooks, quick-start guides, specs) with their IDs. Read the ones that cover the topic.
-
-Meeting notes and recordings in Drive are internal discussion. Use them only to understand intent, never as a statement of what shipped.
-
-### D. Problems customers actually hit
-
-For the "If something goes wrong" and "Common questions" sections:
-
-1. Brain `support_search` with the topic in plain words. If it answers "access is none", say so in your notes and move on.
-2. Brain `custom_docs_search` for internal solution notes and workarounds.
-3. The support desk connector, if present: search tickets by the feature words and read what was asked and how it ended.
-4. Confluence `search` for a QA note or knowledge-base page on the feature.
-
-Support tickets and desk conversations contain customers' names and data. Take the pattern ("fans did not receive the code"), never the customer, the wording or the details.
-
-### E. Anything else connected
-
-Look at what other connectors the session has. If one plainly holds material on this topic (design files, a wiki, a chat workspace), run one targeted search there. Do not trawl sources that have nothing to do with the product.
-
-## 4. Know when you are done
-
-For **every setting, option and step** in the flow, you can state:
-
-- what it is for,
-- what it changes for the fan or for staff,
-- its default and its limits (sizes, counts, required or optional),
-- what depends on it elsewhere,
-- what goes wrong and what the reader sees when it does,
-- that it is released.
-
-If a point is still open after the code, Jira and Drive, it goes on your list of things to word generally (SKILL.md step 6), not into another round of searching.
-
-## 5. Weigh what you found
+## 5. Trust
 
 | Question | Trust, in order |
 | --- | --- |
-| What the screen looks like, labels, order of steps | The PDF |
-| What fields exist, what is required, validation | Code via Brain, then released Jira |
-| How it behaves, defaults, what a switch hides | Released Jira, current playbook, code |
-| Whether customers can use it yet | Jira status |
-| What goes wrong | Support history, internal solution notes, then validation rules in code |
-| Older documents | Only where nothing newer speaks |
+| Labels, paths, order of steps | The PDF |
+| Fields, required, validation | Code, then released Jira |
+| Behaviour, defaults | Released Jira, current playbook, code |
+| Available to customers | Jira status |
+| What goes wrong | Support history, internal notes, validation in code |
 
-When two sources disagree and the newer one is released, follow the newer one. When you cannot tell, write only what both agree on.
+Newer and released beats older. If you cannot tell, write only what both agree on.
 
-## 6. Report it
+## 6. Updating a pack
 
-In your chat notes, list each source with what it gave you and each source you could not reach. One line each. This is how the writer knows how far to trust the article.
-
-## 7. Update the knowledge file
-
-When a search confirms or changes something in the pack's `knowledge.md` (or there is no pack yet and you are building one, see `products/README.md`):
-
-1. Change the fact in the relevant section; keep it short and customer-oriented.
-2. Tag it correctly: no tag (confirmed), `[VERIFY]` (unconfirmed, internal to this file only), `[INTERNAL]` (true, never published).
-3. If a feature moved from unreleased to released, remove it from the not-released section.
-4. Update the snapshot date at the top.
-5. Add any new standing document to the table in the pack's `product.md`.
+Change the fact in the relevant section of `knowledge.md`, tag it (none, `[VERIFY]`, `[INTERNAL]`), move released features out of the not-released section, update the snapshot date, and add any new standing document to `product.md`.

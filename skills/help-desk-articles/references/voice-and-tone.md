@@ -1,144 +1,87 @@
 # Voice and tone
 
-Every article should sound as if one person wrote it, whoever actually did. This file is the single authority on wording. Where another file in the skill appears to differ, this one wins.
+The single authority on wording, for every writer and product. Product packs add product terms; nothing overrides this file. `scripts/check_article.py` enforces the mechanical rules, so spend your attention on the first section.
 
-## The voice in one paragraph
+## The voice
 
-A calm, capable colleague who has set the product up many times, sitting next to the reader. They say what to do, in the order to do it, in plain words. They take a sentence to explain what a setting is for and what their own customers will see because of it, so the reader understands the choice and is not just clicking. They mention the one thing that will trip you up, at the moment it matters. They are warm through being helpful, not through chattiness. They do not sell, apologise, joke, or explain how the software is built.
+A calm, capable colleague sitting next to the reader. Says what to do, in order, in plain words. Takes a sentence to explain what a setting is for and what the reader's customers will see because of it. Warns about the one thing that will trip you up, at the step where it matters. Warm through being helpful, not chatty. Does not sell, apologise, joke, or describe how the software is built.
 
-## Five rules
+1. **Direct.** "Select **Save**." Not "You may want to click Save".
+2. **Plain.** Everyday words, one idea per sentence, under 20 words where possible.
+3. **Specific.** Exact labels, exact values, an example for everything typed.
+4. **Explanatory.** Before a group of steps, one or two sentences on what this part is for. Define an unfamiliar term the first time ("A hex code is a # followed by 6 letters and numbers"). Say which option suits whom.
+5. **Neutral.** Facts and consequences. No hype, no blame.
 
-1. **Direct.** Tell the reader what to do. "Select **Save**." Not "You may want to click Save" or "The Save button should be clicked."
-2. **Plain.** Everyday words, short sentences, one idea each. If a twelve-year-old would stumble on a word, change it.
-3. **Specific.** Exact labels, exact values, a concrete example for every field. "Enter a prefix, for example WWE." Not "Enter an appropriate value."
-4. **Reassuring through clarity, not through adjectives.** Say what will happen and how to tell it worked. Never "simply", "just", "easily", "seamless".
-5. **Neutral.** No hype, no blame, no opinions. State facts and consequences.
-6. **Generous with explanation.** Before a group of steps, say in one or two sentences what this part is for. Define any term a new customer would not know the first time it appears ("A hex code is a # followed by 6 letters and numbers"). Give an example for every value. Say which option suits which kind of venue. Friendly means the reader never has to guess.
+## Mechanics
 
-## Grammar and mechanics
+- "You" for the reader. Never "we". Name retailcloud when it acts.
+- Present tense, active voice. Steps start with a verb, one action each. When the system acts first: "A docket prints. Take it to the stock area."
+- Reasons in one clause after the action: "Turn on **X** first, because Y needs it."
+- No contractions, exclamation marks, "please", or dashes joining clauses.
+- Bold only on-screen labels (and words printed on receipts staff must recognise), spelled as shown. Paths: **A** > **B** > **C**. Italics only for other articles' titles.
+- Headings and titles in sentence case. Titles under 60 characters; how-tos start with a verb.
+- Numerals for counts and values ("3 options"); "one" when not a count. Times 1:00 PM. US spelling. Dollars unless told otherwise.
+- "for example", "that is", "through", not e.g., i.e., via. No "etc.".
 
-| Point | Rule | Example |
-| --- | --- | --- |
-| Person | "You" for the reader. "We" is never used. retailcloud is named when it acts. | "retailcloud activates FanVista for your venue." |
-| Tense and voice | Present tense, active voice. | "A docket prints at your counter." |
-| Steps | Start with a verb. One action per step. | "Turn on **Ready**." |
-| System-first steps | What the reader sees, then what to do. | "A docket prints. Take it to the stock area." |
-| Reasons | One clause, after the action. | "Turn on **Order Checkout** first, because the receipt template needs it." |
-| Sentence length | Aim for under 20 words. Split anything over 25. | |
-| Contractions | Avoid them. "Do not", "cannot", "it is". They read more clearly for non-native speakers and translate better. | |
-| Headings | Sentence case. No ending punctuation. Section headings are fixed by the template, including "When you would do this". | "Before you start" |
-| Titles | Sentence case, under about 60 characters. Use the catalog title when there is one. New how-tos start with a verb; fan how-tos may start with "How to". | "Create a Quickpick menu" |
-| UI labels | Bold, spelled and capitalised exactly as on screen. This includes words printed on dockets and receipts that staff must recognise. Nothing else is bold. | **Add QR Code in Email**, **ORDER UPDATED** |
-| Navigation | Bold labels joined with " > ". | **FanVista** > **Setup** > **Branding** |
-| Numbers | Numerals for every count and value, including 1 to 9. Keep "one" as a word when it is not a count ("one of them", "one at a time"). | "3 preset options" |
-| Times and dates | 1:00 PM. Windows with a hyphen: 1:00 PM-4:00 PM. | |
-| Percentages | Numeral and symbol. | 100% |
-| Money | Dollars unless the user says the article is for another region. | $5 |
-| Spelling | US English. | fulfillment, color, canceled |
-| Lists | Bullets for options, numbers only for sequence. Parallel wording. | |
-| Dashes | Do not use a dash to join clauses. Use a full stop or a comma. Hyphens are for compound words and ranges only. | |
-| Punctuation | No exclamation marks. No ampersand except in a UI label. No "etc." - name the items or say "such as". | |
-| Emphasis | No italics for emphasis, no capitals for emphasis. Italics only for the titles of other articles. | |
+## Verbs for controls
 
-## Verbs for the interface
+| Control | Verb |
+| --- | --- |
+| Button, link, menu item, tab | select (tap, in articles for end customers on phones) |
+| Checkbox | select / clear |
+| Toggle | turn on / turn off |
+| Field | enter |
+| Dropdown | select X from Y |
+| Page | go to, open |
+| File | upload |
+| Code | scan |
 
-Use the same verb for the same kind of control, every time.
+Never click, press, hit, check, tick, enable, disable, type, input, navigate to.
 
-| Control | Verb | Not |
-| --- | --- | --- |
-| Button, link, menu item, tab | select | click, tap, press, hit, choose |
-| Checkbox | select / clear | check, tick, untick |
-| Toggle | turn on / turn off | enable, disable, switch, activate |
-| Text or number field | enter | type, input, fill in, key in |
-| Dropdown | select **X** from **Y** | pick, choose |
-| Page or screen | go to, open | navigate to, access, visit |
-| File | upload | add, attach, import |
-| QR code or barcode | scan | read |
-| Physical action | put, take, pick, pack, hand over, show | (any plain verb is fine) |
-
-Articles for end customers on phones (for example fans ordering) are the one exception: use **tap** in place of **select**.
-
-## Words we use
-
-These apply to every product. Each product pack adds its own terms in `products/<product>/product.md` (product names, what to call the end customer, feature names). Read both.
+## Words
 
 | Write | Not |
 | --- | --- |
-| Retail Console | console, back office, portal, RC |
-| you, your business (or the word the product pack gives, such as your venue) | merchant, operator, client, tenant |
-| staff | employees, agents, associates, runners |
-| order | transaction, ticket, cart (once placed) |
+| Retail Console | console, back office, portal |
+| you, your business (or the pack's word) | merchant, operator, client, tenant |
+| staff | employees, agents, associates |
 | stock on hand | QOH, inventory level |
-| set up (verb), setup (noun) | set-up |
-| sign in | log in, login, log on |
-| turn on | enable, activate, switch on |
-| retailcloud Support | support team, helpdesk, us, our team |
-| retailcloud (lowercase r) | RetailCloud, Retail Cloud |
+| set up (verb), setup (noun) | set-up, configure |
+| sign in | log in, login |
+| retailcloud Support | support team, helpdesk, us |
+| retailcloud | RetailCloud, Retail Cloud |
 
-When the request uses a term the word lists avoid, use it once in the opening sentence so the page is found by that search, then use the standard term.
-
-## Words we do not use
-
-- **Minimisers**: simply, just, easily, quickly, obviously, of course, as you know.
-- **Hype**: seamless, powerful, robust, intuitive, cutting-edge, best-in-class, effortless, game-changing.
-- **Hedging**: should (for what the system does), might want to, feel free to, please note that, it is recommended that.
-- **Politeness padding**: please (in steps), kindly, thank you for, we are happy to.
-- **Jargon**: leverage, utilize, functionality, configure (use "set up"), provision, instance, backend, payload, endpoint, flag, sync (use "update").
-- **Latin**: e.g., i.e., via, etc. Write "for example", "that is", "through", or name the items.
-- **Version talk**: new, now, previously, no longer, V2, latest release, when they describe how the product has changed. Describe the product as it is today. ("A new order" and the **NEW** label are fine.)
-- **Blame**: you failed to, you forgot, incorrect configuration by. Say what is set and what to change.
+Never use: simply, just, easily, quickly, obviously; seamless, powerful, robust, intuitive, effortless; should (for what the system does), might want to, feel free; kindly; leverage, utilize, functionality, backend, payload, endpoint; new, now, previously, no longer (about product changes).
 
 ## Standard sentences
 
-Reuse these word for word so the same situation always reads the same way.
+Use word for word, including in table cells.
 
 | Situation | Sentence |
 | --- | --- |
-| Something only retailcloud can do | "retailcloud sets this up for you. Contact retailcloud Support to request it." |
-| Escalation for venue staff or admins | "If the problem continues, contact retailcloud Support." |
-| One-time task | "You do this once for your venue. It applies to every event." |
-| Per-event task | "Repeat these steps for each event." |
+| Only retailcloud can do it | "retailcloud sets this up for you. Contact retailcloud Support to request it." |
+| Escalation | "If the problem continues, contact retailcloud Support." |
+| One-time task | "You do this once for your business. It applies to every <unit the pack names>." |
 | Confirming success | "To confirm it worked, ..." |
-| Pointing to the next task | "Next, ..." followed by the article title in italics. |
-| Optional step | Begin the step with "Optional:". |
-| Irreversible action | Warning callout beginning "You cannot change this later." |
-| Missing prerequisite | "If you have not done this yet, see" followed by the article title in italics. |
+| Next task | "Next, see *<article title>*." |
+| Optional step | Starts "Optional:" |
+| Irreversible | Warning starting "You cannot change this later." |
+| Missing prerequisite | "If you have not done this yet, see *<article title>*." |
 
-In a table cell or a bullet, use the standard sentence unchanged.
+End customers are sent to the business's staff, never to retailcloud Support.
 
-Tags in the metadata header are for search, so they may include terms the body avoids, such as "game day".
+## Density by reader
 
-## Tone by reader
-
-The voice stays the same. Only the density changes.
-
-| Reader | Adjust like this |
+| Reader | Write |
 | --- | --- |
-| Admin (owner, manager, venue admin) | Full template. Include the reason behind settings and the consequences of each option. |
-| Operations manager | Full template. Lean toward per-event tasks and checklists. |
-| Fulfillment and kitchen staff | Shorter steps, physical actions first ("Put the receipt inside the bag"). No setup detail - send them to their manager. |
-| End customer (shopper, fan, guest) | Shortest of all. Steps and a brief problem list only. No back-office terms. When they are stuck, send them to the business's staff, never to retailcloud Support. |
+| Admin, manager | Everything: reasons, consequences, option tables |
+| Staff | Short steps, physical actions first, no setup detail; "Tell your manager." |
+| End customer | Steps and a short problem list; no back-office terms |
 
 ## Before and after
 
 | Before | After |
 | --- | --- |
-| "Simply navigate to the Branding section and configure your Fulfillment Location." | "Go to **FanVista** > **Setup** > **Branding**. Select your **Fulfillment Location**." |
-| "Please note that the Order Checkout trigger should be enabled prior to setting up the email template, otherwise it won't work!" | Warning: "Turn on **Order Checkout** before you design the email receipt. The receipt template cannot be saved until it is on." |
-| "FanVista V2 now offers a seamless single-tap checkout with Apple Pay & Google Pay." | "Fans can pay with Apple Pay or Google Pay." |
-| "The merchant must ensure QOH is tracked at the fulfilment store." | "Stock on hand is taken from your **Fulfillment Location**." |
-| "If the docket doesn't fire, the operator probably misconfigured the printer source." | "If no docket prints, check that the printer's order source is set to **FanVista**." |
-| "Customers will get an SMS and/or e-mail once the order's been marked as ready by an associate." | "Fans receive a text or email when your staff mark the order **Ready**." |
-
-## Self-check before saving
-
-Read the draft once looking only for these:
-
-1. Does every step that names a control use the verb from the interface table? (A step may also open with "Optional:", with what the reader sees, or with a physical action.)
-2. Is every bold phrase an on-screen label, and is every on-screen label bold?
-3. Any word from "Words we do not use"? Any term from the right-hand column of "Words we use", here or in the product pack?
-4. Any contraction, exclamation mark, dash between clauses, "we", or "please"?
-5. Did each recurring situation use its standard sentence?
-6. Would a reader in a hurry know what to do from the steps alone?
-7. Would a reader new to the product understand why each setting matters and what their customers will see?
-8. Is the article free of placeholders, questions and notes to the writer?
+| "Simply navigate to Branding and configure your location." | "Go to **Setup**. Under **Fulfillment Location**, select your store from **Store**." |
+| "Please note the trigger should be enabled first, otherwise it won't work!" | Warning: "Turn on **Order Checkout** before you design the email receipt. The template cannot be saved until it is on." |
+| "V2 now offers seamless single-tap checkout." | "Fans can pay with Apple Pay or Google Pay." |

@@ -2,7 +2,7 @@
 title: Set up FanVista branding
 slug: set-up-fanvista-branding
 category: FanVista > One-time setup
-description: Give your FanVista ordering page your own look, choose how fans sign in, set where orders are fulfilled, offer pickup or in-seat delivery, and create your web address.
+description: Give your FanVista ordering page your own look, choose how fans sign in, set where orders are fulfilled, and create your web address.
 tags: fanvista, branding, setup, sign in, pickup, in-seat delivery, fulfillment location, web address
 ---
 
@@ -143,7 +143,7 @@ FanVista can serve 2 kinds of customer. Suite owners have a booked suite and ord
 
    ![Suite Management with Enable Suite Management and Enable Fan Guest Login turned on](images/set-up-fanvista-branding/05-suite-management.png)
 
-| Your venue | Enable Suite Management | Enable Fan Guest Login |
+| Your venue | **Enable Suite Management** | **Enable Fan Guest Login** |
 | --- | --- | --- |
 | Sells to general fans only | Off | On |
 | Sells to suite owners only | On | Off |

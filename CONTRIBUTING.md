@@ -9,7 +9,8 @@ This repository is the master copy. Each writer's installed skill is a copy of i
 | `references/voice-and-tone.md` | The team agrees a wording rule | The documentation owner. A change here changes every future article, so review it as a team. |
 | `products/<product>/knowledge.md` | A workflow PDF, a release or the live console confirms or changes a fact | Any writer, with the source noted in the commit message |
 | `products/<product>/catalog.md` | An article is added, renamed or retired | Any writer |
-| `references/document360.md` | Document360 formatting is confirmed or changes | Any writer |
+| `references/article-template.md` | The page structure or Document360 formatting is confirmed or changes | The documentation owner |
+| `scripts/check_article.py` | A wording rule is added to or removed from the voice guide (keep the two in step) | The documentation owner |
 | `references/research.md` | A source document is replaced or moved, a connector changes, or a better search is found | Any writer |
 | `products/<product>/product.md` | A product's terms, readers, traps or sources change | Any writer on that product |
 | `products/<product>/examples/` | A published article is a better model than a current example | The documentation owner |

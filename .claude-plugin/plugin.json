@@ -1,6 +1,6 @@
 {
   "name": "help-desk-articles",
   "description": "Turn a workflow PDF into a publish-ready help article for any retailcloud product, for Document360, in one house voice, with screenshots from the PDF. Researches from Brain, Jira, Confluence and Drive.",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "author": { "name": "retailcloud Product" }
 }
