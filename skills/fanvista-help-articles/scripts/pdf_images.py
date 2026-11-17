@@ -16,6 +16,11 @@ Requires PyMuPDF:  python -m pip install pymupdf
       separate embedded picture (flattened or vector PDFs), or to trim an
       embedded screenshot down to the part a step is about.
       Example: the top half of page 4 ->  crop guide.pdf 4 0 0 1 0.5 out.png
+
+  python pdf_images.py trim <image.png> <left> <top> <right> <bottom> <out.png>
+      Cuts a rectangle out of an already extracted image, in pixels. Use this
+      to keep only the part of a screenshot a step is about, or to leave out
+      a part that must not be published (a name, a customer logo, test data).
 """
 import argparse
 import json
@@ -115,6 +120,18 @@ def crop(args):
     print(f"Saved {args.out} ({pix.width}x{pix.height})")
 
 
+def trim(args):
+    source = fitz.Pixmap(args.image)
+    box = fitz.IRect(args.left, args.top, args.right, args.bottom) & source.irect
+    if box.is_empty:
+        sys.exit(f"That rectangle is outside the image ({source.width}x{source.height}).")
+    out = fitz.Pixmap(source.colorspace, box, source.alpha)
+    out.copy(source, box)
+    os.makedirs(os.path.dirname(os.path.abspath(args.out)), exist_ok=True)
+    out.save(args.out)
+    print(f"Saved {args.out} ({out.width}x{out.height})")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -135,6 +152,13 @@ def main():
     c.add_argument("out")
     c.add_argument("--dpi", type=int, default=200)
     c.set_defaults(run=crop)
+
+    t = sub.add_parser("trim")
+    t.add_argument("image")
+    for name in ("left", "top", "right", "bottom"):
+        t.add_argument(name, type=int)
+    t.add_argument("out")
+    t.set_defaults(run=trim)
 
     args = parser.parse_args()
     args.run(args)

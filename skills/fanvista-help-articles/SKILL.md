@@ -34,13 +34,15 @@ Do not interview the writer. Work out the task, the reader (venue admin, operati
 
 ### 2. Read the PDF and understand the flow
 
-Read the whole PDF with the Read tool (it shows you the pages, including the screenshots; at most 20 pages per call). Then pull the images out so you can use them later:
+Pull the pages and images out of the PDF first:
 
 ```
 python <skill>/scripts/pdf_images.py extract "<pdf>" "<scratch folder>/pdf"
 ```
 
-This renders every page and saves each embedded picture, with a `manifest.json` that records which page each picture came from and the text next to it. It needs PyMuPDF; if it reports that it is missing, run `python -m pip install pymupdf` and try again.
+This renders every page (`page-NN.png`) and saves each embedded picture (`page-NN-img-K.png`), with a `manifest.json` that records which page each picture came from and the text next to it. It needs PyMuPDF; if it reports that it is missing, run `python -m pip install pymupdf` and try again.
+
+Then look at every page with the Read tool. Open the extracted pictures, or the page renders where a page has no separate pictures. Many workflow PDFs (step recorders such as Onvoke or Scribe) are pictures only, with the step text inside the image, so the manifest text will be empty; the images are the content. Reading the PDF file directly with the Read tool also works where the machine supports it, but do not rely on it.
 
 Before writing anything, set out the flow for yourself:
 
@@ -79,6 +81,9 @@ For each image you want:
 
 1. Find it in the extracted set (`page-NN-img-K.png`). If the screenshot was flattened into the page, or you want only part of a screen, cut it out:
    `python <skill>/scripts/pdf_images.py crop "<pdf>" <page> <left> <top> <right> <bottom> "<out.png>"` (coordinates are fractions of the page from the top-left corner).
+   To keep only part of an extracted picture, or to cut away a part that must not be published:
+   `python <skill>/scripts/pdf_images.py trim "<image.png>" <left> <top> <right> <bottom> "<out.png>"` (pixels).
+   Step-recorder PDFs put a banner such as "STEP 3 Click on..." above each screenshot and often show the recorder's own account, test data or a customer's branding somewhere on the screen. Trim to the section of the screen the step is about; that usually removes all of it.
 2. **Look at the image with the Read tool before using it.** Confirm it shows what the step says and that the labels match your text.
 3. Check it is safe to publish. Leave out any image that shows a real customer or venue name, a person's name, email, phone number or card details, internal addresses, test or staging banners, another client's data, or a feature that is not released. Tell the writer which images you rejected and why, and put a `[SCREENSHOT: ...]` marker in its place so they can supply a clean one.
 4. Copy it to `images/<article-slug>/NN-short-description.png` beside the article, numbered in the order it appears.

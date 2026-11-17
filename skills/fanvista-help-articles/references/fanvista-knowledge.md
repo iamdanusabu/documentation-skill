@@ -1,6 +1,6 @@
 # FanVista product knowledge
 
-**Snapshot date: 17 November 2026.** Built from the FanVista Playbook v2 (Drive, last edited 29 Oct 2026), the Generic Fan Events quick-start guides, the Setup Wizard spec, and Jira items in RELEASED status as of the snapshot date. See `sources.md` to refresh.
+**Snapshot date: 17 November 2026.** Setup page labels confirmed from a workflow PDF the same day. Built from the FanVista Playbook v2 (Drive, last edited 29 Oct 2026), the Generic Fan Events quick-start guides, the Setup Wizard spec, and Jira items in RELEASED status as of the snapshot date. See `sources.md` to refresh.
 
 Tags: no tag = confirmed, write as fact. `[VERIFY]` = sources disagree or the exact UI path/label is unconfirmed; flag it in the article. `[INTERNAL]` = true but never published.
 
@@ -70,9 +70,23 @@ Done once per venue; applies to every event afterwards. The Retail Console has a
 
 Do the steps in this order - several depend on the one before.
 
+### 4.0 The Setup page as it appears in the console (confirmed)
+
+Confirmed from a workflow PDF of the live console, 17 November 2026. These labels are settled; use them without `[VERIFY]`.
+
+- Menu: **FanVista** expands to **Onboarding**, **Dashboard**, **Event**, **Bookings**, **Reports**, **Sponsorships**, **Setup**.
+- **FanVista** > **Setup** is one scrolling page with these sections, in order:
+  - Titles and text (a field labelled **Title 3** is visible; the fields above it were not captured `[VERIFY]`), **Primary Color**, **Secondary Color** (hex codes), **Login Screen Background Image** with an **Upload Image** button (1080 x 1080, max 5 MB). A phone preview on the right shows the sign-in screen.
+  - **Login Options**: toggles **Enable Mobile Number Login** (sign in with a mobile number and an SMS code) and **Enable Email Login** (sign in with an email address and a code sent to the inbox). Sign-in is by one-time code, not password.
+  - **Fulfillment Location**: a required **Store** dropdown.
+  - **Delivery Method**: checkboxes **In-Seat** and **Pickup**. With **Pickup** selected, **Configure Pickup Time** shows **From** and **To** fields, a plus icon to add a window and a trash icon to remove one. Saving with Pickup selected and no window gives "Please configure the pickup time before saving."
+  - **Customized URL**: a name field followed by `.fanvista.app`.
+  - **Suite Management**: toggles **Enable Suite Management** (shows or hides Bookings in the menu, the suite tab in Setup, and suite options in the QR Code Generator) and **Enable Fan Guest Login** (lets users sign in as a Fan Guest without a Suite Owner account).
+- Not captured: the top of the page, the save button, any tabs within Setup, and where seat sections are set when **In-Seat** is selected `[VERIFY]`.
+
 ### 4.1 Branding
 
-- **Fulfillment Location / Fulfillment Store** (the UI label may be either `[VERIFY]`): the store where orders are physically picked and packed. This one setting drives three things for fan orders: the stock level fans see, where the sale is recorded and inventory reduced, and where the order docket prints. If it is not set, stock is not tracked and no docket prints. It is also the fallback for any suite that has no store of its own.
+- **Fulfillment Location** (section) with a **Store** dropdown: the store where orders are physically picked and packed. This one setting drives three things for fan orders: the stock level fans see, where the sale is recorded and inventory reduced, and where the order docket prints. If it is not set, stock is not tracked and no docket prints. It is also the fallback for any suite that has no store of its own.
 - **Look and feel**: venue logo, colours, title and branding text, background image, social media links. A preview shows how the fan app will look. The splash screen shows the text and description entered here.
 - **FanVista URL**: the venue's unique ordering address. It is fixed once created and cannot be changed later, so choose it carefully.
 - **Delivery Method**: **Pickup**, **In-Seat Delivery**, or both. Fans are offered only what is enabled.
@@ -403,11 +417,11 @@ Each of these needs a `[VERIFY]` in an article that depends on it, until confirm
 
 1. **Where notification rules live**: FanVista Setup -> Notifications (newer, released) vs Settings -> Customer Notifications with Type/Source selectors (playbook).
 2. **Printer settings**: screen name (Printer Configuration vs Settings -> Printer Settings) and the field that ties a printer to FanVista (Source vs Auto Print by Order Type).
-3. **Fulfillment Location vs Fulfillment Store** label.
+3. (Settled: the section is **Fulfillment Location**, the field is **Store**.)
 4. **Event type label**: Generic vs Normal.
 5. **Quickpick / Quick Pick / QuickPicks** spelling.
-6. **Sign-in options**: mobile number and email toggles (newer) vs email + password and Google Sign-In (older).
-7. **Delivery method label**: Pickup vs Counter Pickup; In-Seat Delivery vs Delivery.
+6. (Settled: mobile number and email toggles, each verified by a one-time code.) Whether sign-in codes by SMS need the venue's SMS setup is not confirmed.
+7. **Delivery method label**: the console shows **In-Seat** and **Pickup**. The labels in the fan app are not confirmed.
 8. **Wizard entry points and step names** - the released wizard may differ in detail from the specs.
 9. **OnTour artist/product entitlement** - described only in older notes.
 10. **How much KDS setup remains in the Restaurant Console.**
