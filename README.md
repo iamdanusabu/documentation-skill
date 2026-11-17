@@ -21,7 +21,7 @@ Pick the one that matches how you use Claude.
 ### Claude Code, as a plugin (updates with one command)
 
 ```
-/plugin marketplace add <github-org>/<this-repo>
+/plugin marketplace add iamdanusabu/documentation-skill
 /plugin install fanvista-help-articles@retailcloud-docs
 ```
 
