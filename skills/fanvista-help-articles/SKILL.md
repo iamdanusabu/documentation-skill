@@ -1,6 +1,7 @@
 ---
 name: fanvista-help-articles
 description: Turn a workflow PDF into a finished, publish-ready FanVista user guide for retailcloud's Document360 help desk - detailed, friendly, in the fixed house voice, with screenshots from the PDF embedded. Use this skill whenever the user shares a PDF (or screenshots, a playbook section, a Jira ticket or a release) and wants a user guide, help article, how-to, setup guide, FAQ or troubleshooting page for customers about FanVista or anything connected to it - setup, branding, payments, notifications, events, Quickpick menus, suites, QR codes, printers, OrderUp, KDS, the fan ordering experience, sponsorship, reports. Also use it when a writer asks for a FanVista customer document without a PDF, or asks to check or rewrite an existing article so it matches the house tone. Every writer on the team uses this skill so that all articles sound the same. Not for internal PRDs, Jira tickets, sales decks or team release notes.
+argument-hint: "<path to the workflow PDF> [who it is for, anything to know]"
 ---
 
 # FanVista help articles
@@ -23,7 +24,7 @@ Three things define a good result:
 | `references/article-template.md` | Always, before drafting. Page structures, how much detail, images, a worked example. |
 | `references/document360.md` | Always, before saving. Metadata header, callout syntax, how images reach Document360. |
 | `references/fanvista-knowledge.md` | Always. What FanVista does and how it is set up. Has a table of contents; read the sections for your topic plus section 17 (conflicts, known gaps) and 18 (do not document). |
-| `references/sources.md` | At step 3. Where to look in Brain, Drive, Jira and Confluence, the searches to run, and how to judge what you find. |
+| `references/research.md` | At steps 1 and 3. How to connect to Brain, Jira, Confluence, Drive and the other sources, the searches to run, and how to judge what you find. |
 | `references/article-catalog.md` | To find the canonical title, the neighbouring articles to link to, and the scope boundaries. |
 | `examples/` | To hear the voice and see the level of detail. Match them. |
 | `scripts/pdf_images.py` | Steps 2 and 5: pull images out of the PDF and trim them. |
@@ -31,11 +32,15 @@ Three things define a good result:
 
 ## Workflow
 
-### 1. Get the PDF and the brief
+### 1. Start: take the PDF and connect the sources
 
-You need the PDF's path. If none was given, ask once. If the writer says there is none, carry on from the knowledge file and connectors; the article will have no images, and you say so in chat.
+The writer's whole input is a PDF path and, sometimes, a line of context (who it is for, a feature name, something to emphasise). If the skill was invoked with arguments, they are: $ARGUMENTS
 
-Do not interview the writer. Work out the task, the reader (venue admin, operations manager, fulfillment staff, fan) and the page type from the PDF and the request.
+That is all you should need from them. Do not interview the writer and do not ask them for facts; you fetch those yourself. Ask only if there is no PDF path at all. If the writer says there is no PDF, carry on from the knowledge file and the connectors; the article will have no images, and you say so in chat.
+
+Straight away, before reading the PDF in depth, connect the sources as set out in `references/research.md` section 1: load the Brain, Jira, Confluence and Drive tools, confirm each answers, and tell the writer in one line what is connected. Do this at the start so a missing connection is known now, not discovered halfway through.
+
+Work out the task, the reader (venue admin, operations manager, fulfillment staff, fan) and the page type from the PDF and whatever the writer said.
 
 ### 2. Read the PDF and understand the flow
 
@@ -60,19 +65,20 @@ Read the whole of each screenshot, not just the highlighted control. Recorders c
 
 **The PDF is the authority on what the screens look like.** When it disagrees with the knowledge file on a path or label, the PDF wins, and you record the confirmed label in `fanvista-knowledge.md`.
 
-### 3. Research the topic properly
+### 3. Research the topic yourself
 
-This step is what turns screens into a guide. Do it every time, and do it thoroughly: the article's depth comes from here. Follow `references/sources.md`, which lists the searches to run. At minimum:
+This step is what turns screens into a guide, and it is your job, not the writer's. Follow `references/research.md` from section 2 onward, every time:
 
-- **The bundled knowledge** for the topic.
-- **Brain code lookup** to confirm fields, options and rules that the PDF only half shows. Find the entity or service behind the screen (`files_for`, then `code_slice`) and read the field list and the validation. This is how you learn the fields above or below what the recorder captured, which settings are required, and the exact error conditions.
-- **Jira**, released items only, for the behaviour and rules of each control on the screen. Search by the on-screen labels in quotes; tickets often carry the exact rules, defaults and error messages.
-- **Google Drive** for the current playbook and quick-start guides covering the topic.
-- **Brain internal docs and support history, Confluence**, for known problems and their fixes.
+1. Turn the PDF's page names, control labels and messages into search terms.
+2. **Brain**: find the code behind the screen and read its fields and validation. This fills in what the recorder did not capture.
+3. **Jira**: search the on-screen labels and the feature; take rules, defaults and error messages from released items.
+4. **Drive**: the current playbook and quick-start guides for the topic.
+5. **Support history, internal notes, Confluence**: what customers actually get stuck on.
+6. **Any other connected source** that plainly holds material on the topic.
 
-Send the searches together and keep going until you can answer, for every setting on the screen: what it is for, what it changes for the fan or the staff, its default, its limits, what depends on it, and what goes wrong. If a source cannot be reached, carry on with the others.
+Send searches in parallel and keep going until, for every setting and step in the flow, you can say what it is for, what it changes for the fan or staff, its default and limits, what depends on it, what goes wrong, and that it is released. If a source cannot be reached, carry on with the others and say so in your notes.
 
-Weighing what you find: the PDF for the interface; code, the current playbook and **released** Jira items for behaviour; older documents only where nothing newer speaks. Anything not released does not exist for the reader.
+Anything not released does not exist for the reader.
 
 ### 4. Plan the guide
 
@@ -133,7 +139,7 @@ This writes `<slug>.docx` (import into Document360 and the images come with it) 
 
 In your reply, give the paths and short **notes for the writer**:
 
-- which sources you used and what each contributed, and any you could not reach,
+- each source you used and what it contributed, one line each, and any you could not reach,
 - images used and any screen that needs a clean capture,
 - anything you worded generally or left out because it could not be confirmed, so the writer can sharpen it,
 - where the PDF and other sources disagreed and which you followed.
@@ -142,7 +148,7 @@ Keep these notes out of the article files.
 
 ### 9. Keep the knowledge current
 
-When the PDF, the code or the writer confirms a label, path or behaviour, update `references/fanvista-knowledge.md` per the last section of `sources.md`. Tell the writer you did, and that the change is only in their copy of the skill until the updated skill is shared with the team.
+When the PDF, the code or the writer confirms a label, path or behaviour, update `references/fanvista-knowledge.md` per the last section of `research.md`. Tell the writer you did, and that the change is only in their copy of the skill until the updated skill is shared with the team.
 
 ## Other requests
 

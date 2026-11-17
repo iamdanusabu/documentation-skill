@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.3.0 - 2026-11-17
+
+- The only input is a PDF path, plus an optional line of context.
+- The skill connects to Brain, Jira, Confluence and Drive by itself at the start and reports what is available.
+- New research protocol (`references/research.md`): search terms from the PDF, code lookup, released tickets, playbook, support history, other connected sources.
+- `docs/CONNECTORS.md`: how each writer turns the connectors on.
+
 ## 1.2.0 - 2026-11-17
 
 - Articles are delivered publish-ready: no placeholders or notes to the writer in the article.

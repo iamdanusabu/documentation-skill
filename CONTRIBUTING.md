@@ -10,7 +10,7 @@ This repository is the master copy. Each writer's installed skill is a copy of i
 | `references/fanvista-knowledge.md` | A workflow PDF, a release or the live console confirms or changes a fact | Any writer, with the source noted in the commit message |
 | `references/article-catalog.md` | An article is added, renamed or retired | Any writer |
 | `references/document360.md` | Document360 formatting is confirmed or changes | Any writer |
-| `references/sources.md` | A source document is replaced or moved | Any writer |
+| `references/research.md` | A source document is replaced or moved, a connector changes, or a better search is found | Any writer |
 | `examples/` | A published article is a better model than a current example | The documentation owner |
 | `SKILL.md` | The workflow itself changes | The documentation owner |
 

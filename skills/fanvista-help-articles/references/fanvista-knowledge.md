@@ -1,6 +1,6 @@
 # FanVista product knowledge
 
-**Snapshot date: 17 November 2026.** Setup page labels confirmed from a workflow PDF the same day. Built from the FanVista Playbook v2 (Drive, last edited 29 Oct 2026), the Generic Fan Events quick-start guides, the Setup Wizard spec, and Jira items in RELEASED status as of the snapshot date. See `sources.md` to refresh.
+**Snapshot date: 17 November 2026.** Setup page labels confirmed from a workflow PDF the same day. Built from the FanVista Playbook v2 (Drive, last edited 29 Oct 2026), the Generic Fan Events quick-start guides, the Setup Wizard spec, and Jira items in RELEASED status as of the snapshot date. See `research.md` to refresh.
 
 Tags: no tag = confirmed, write as fact. `[VERIFY]` = sources disagree or the exact UI path/label is unconfirmed; flag it in the article. `[INTERNAL]` = true but never published.
 

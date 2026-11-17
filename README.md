@@ -48,23 +48,34 @@ Code execution must be turned on for the image extraction to run. Your workspace
 
 | Requirement | Why | Without it |
 | --- | --- | --- |
+| Brain, Atlassian and Google Drive connectors turned on for your Claude account | The skill researches every article itself from these | It falls back to the knowledge snapshot bundled with it, and articles are thinner |
 | Python 3.9 or later with PyMuPDF and python-docx (`pip install -r requirements.txt`) | Cuts screenshots out of the PDF and builds the Word file with images embedded | Articles are delivered as Markdown without images |
-| Brain connector | Confirms product behaviour, internal setup notes, past support tickets | Falls back to the bundled knowledge snapshot |
-| Google Drive connector, with access to the FanVista playbook | Checks for a newer playbook | Same |
-| Atlassian connector (Jira, Confluence) on `retailcloud.atlassian.net` | Confirms what is released | Same |
 
-The skill works with none of the connectors. It tells you in the reviewer notes which sources it could not reach, so you know how far to trust the result.
+You turn the connectors on once, in **Settings > Connectors**. After that the skill finds and loads them by itself each time it starts, and tells you in one line which are connected. See [docs/CONNECTORS.md](docs/CONNECTORS.md).
 
 ## Use it
 
-Attach or point to the PDF and say what you want:
+Give it the PDF. That is the whole input.
 
 ```
-Here is the workflow PDF for setting up pickup locations: C:\docs\pickup-setup.pdf
-Write the user guide for venue admins.
+/fanvista-help-articles C:\docs\pickup-setup.pdf
 ```
 
-Or call it by name: `/fanvista-help-articles` followed by the request.
+Add a line of context if it helps: who the guide is for, or something to emphasise.
+
+```
+/fanvista-help-articles C:\docs\pickup-setup.pdf  for venue admins, mention that times can differ per event
+```
+
+You can also just say it in a sentence: "Write the user guide from C:\docs\pickup-setup.pdf".
+
+What happens next, without further input from you:
+
+1. It connects to Brain, Jira, Confluence and Drive and reports which are available.
+2. It reads every screen in the PDF.
+3. It researches the topic: the code behind the screen, released tickets, the playbook, past support questions.
+4. It writes the guide in the house voice, cuts the screenshots from the PDF, and builds the Word, preview and Markdown files.
+5. It tells you which sources it used and anything it could not confirm.
 
 Other things it does:
 
@@ -89,11 +100,13 @@ skills/fanvista-help-articles/
     document360.md              publishing format
     fanvista-knowledge.md       product knowledge snapshot (dated at the top)
     article-catalog.md          the planned help set and canonical titles
-    sources.md                  where to refresh knowledge, and what to trust
+    research.md                 how it connects to the sources, the searches it runs, what to trust
   examples/                     three finished articles: admin, staff, fan
-  scripts/pdf_images.py         extracts and crops images from a PDF
+  scripts/pdf_images.py         extracts, crops and trims images from a PDF
+  scripts/build_article.py      builds the Word file and preview page with images embedded
 dist/fanvista-help-articles.skill   packaged skill for upload
 .claude-plugin/                 plugin and marketplace manifests
+docs/CONNECTORS.md              turning on Brain, Atlassian and Drive
 install.ps1, install.sh         copy-install for Claude Code
 build.sh                        rebuilds the package in dist/
 ```
