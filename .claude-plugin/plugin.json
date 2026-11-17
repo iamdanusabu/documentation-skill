@@ -1,0 +1,6 @@
+{
+  "name": "fanvista-help-articles",
+  "description": "Turn a workflow PDF into a customer-facing FanVista user guide for Document360, in retailcloud's house voice, with screenshots taken from the PDF.",
+  "version": "1.0.0",
+  "author": { "name": "retailcloud Product" }
+}
