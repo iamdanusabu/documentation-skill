@@ -10,9 +10,9 @@ Every writer on the team uses the same skill, so every article sounds the same.
 
 For each workflow PDF, Claude produces:
 
-- one Markdown article per task, ready to paste into Document360's Markdown editor, with a metadata header (title, slug, category, description, tags);
+- a finished, publish-ready article with no placeholders, delivered three ways: a Word file with the images embedded (import this into Document360), a self-contained preview page for review, and the Markdown source with a metadata header (title, slug, category, description, tags);
 - an `images/<article-slug>/` folder of screenshots cut from the PDF;
-- reviewer notes in the chat: what still needs checking, which images were used or rejected, where sources disagreed.
+- notes in the chat, never in the article: which sources were used, anything worded generally because it could not be confirmed, and any screen that needs a clean capture.
 
 ## Install
 
@@ -68,18 +68,15 @@ Or call it by name: `/fanvista-help-articles` followed by the request.
 
 Other things it does:
 
-- **No PDF**: "Write the help article for creating a Quickpick menu." It writes from the bundled knowledge and marks what it could not confirm.
+- **No PDF**: "Write the help article for creating a Quickpick menu." It writes from the bundled knowledge and the connectors, without images.
 - **Tone check**: "Check this article against the house voice" with the text or file.
 - **Planning**: "What FanVista articles should we write?" It answers from the 48-article catalog.
 
 ### Before you publish
 
-Every article can contain two kinds of marker. Clear both before publishing.
+The article itself is complete. Read Claude's notes in the chat: they list anything it worded generally because no source confirmed the detail, so you can sharpen it if you know the answer.
 
-- `[VERIFY: ...]` - a label, path or behaviour the sources did not settle. Check it on the live screen.
-- `[SCREENSHOT: ...]` - an image the PDF did not have, or one that could not be published because it showed real customer data.
-
-Then in Document360: create the article, copy the header values into the article settings, paste the body into the Markdown editor, upload the images folder to Drive, and re-point each image.
+Then in Document360: create the article by importing the `.docx` file, so the text, tables and images arrive together, and copy the title, slug, category, description and tags from the top of the `.md` file into the article settings. To use the Markdown editor instead, upload the images folder to Drive, paste the Markdown body, and re-point each image.
 
 ## What is inside
 
