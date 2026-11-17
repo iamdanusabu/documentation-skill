@@ -48,7 +48,7 @@ Code execution must be turned on for the image extraction to run. Your workspace
 
 | Requirement | Why | Without it |
 | --- | --- | --- |
-| Python 3.9 or later with PyMuPDF (`pip install -r requirements.txt`) | Cuts screenshots out of the PDF | Articles are written with `[SCREENSHOT]` placeholders instead of images |
+| Python 3.9 or later with PyMuPDF and python-docx (`pip install -r requirements.txt`) | Cuts screenshots out of the PDF and builds the Word file with images embedded | Articles are delivered as Markdown without images |
 | Brain connector | Confirms product behaviour, internal setup notes, past support tickets | Falls back to the bundled knowledge snapshot |
 | Google Drive connector, with access to the FanVista playbook | Checks for a newer playbook | Same |
 | Atlassian connector (Jira, Confluence) on `retailcloud.atlassian.net` | Confirms what is released | Same |

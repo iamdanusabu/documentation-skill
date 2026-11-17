@@ -76,7 +76,7 @@ Confirmed from a workflow PDF of the live console, 17 November 2026. These label
 
 - Menu: **FanVista** expands to **Onboarding**, **Dashboard**, **Event**, **Bookings**, **Reports**, **Sponsorships**, **Setup**.
 - **FanVista** > **Setup** is one scrolling page with these sections, in order:
-  - Titles and text (a field labelled **Title 3** is visible; the fields above it were not captured `[VERIFY]`), **Primary Color**, **Secondary Color** (hex codes), **Login Screen Background Image** with an **Upload Image** button (1080 x 1080, max 5 MB). A phone preview on the right shows the sign-in screen.
+  - **Title 1**, **Title 2**, **Title 3** (Title 3 seen on screen; Title 1 and Title 2 confirmed from the branding data model, where the stored fields are three titles, a background image, primary and secondary color, a favicon and the subdomain), **Primary Color**, **Secondary Color** (hex codes), **Login Screen Background Image** with an **Upload Image** button (1080 x 1080, max 5 MB). A phone preview on the right shows the sign-in screen.
   - **Login Options**: toggles **Enable Mobile Number Login** (sign in with a mobile number and an SMS code) and **Enable Email Login** (sign in with an email address and a code sent to the inbox). Sign-in is by one-time code, not password.
   - **Fulfillment Location**: a required **Store** dropdown.
   - **Delivery Method**: checkboxes **In-Seat** and **Pickup**. With **Pickup** selected, **Configure Pickup Time** shows **From** and **To** fields, a plus icon to add a window and a trash icon to remove one. Saving with Pickup selected and no window gives "Please configure the pickup time before saving."

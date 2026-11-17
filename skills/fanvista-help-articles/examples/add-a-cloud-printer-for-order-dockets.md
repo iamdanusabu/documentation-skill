@@ -14,14 +14,14 @@ You do this once for your venue. It applies to every event. Repeat the steps whe
 
 ## Before you start
 
-- Your **Fulfillment Location** is saved in your branding. [VERIFY: the label may be Fulfillment Store] If you have not done this yet, see *Set up FanVista branding*.
+- Your **Fulfillment Location** is saved in your branding. If you have not done this yet, see *Set up FanVista branding*.
 - The printer is turned on and connected for cloud printing. retailcloud sets this up for you. Contact retailcloud Support to request it.
-- You have the printer's model name and its MAC address. [VERIFY: say where the reader finds the MAC address, and list the supported printer models]
+- You have the printer's model name and its MAC address.
 
 ## Steps
 
-1. Open the Retail Console and go to **Settings** > **Printer Settings**. [VERIFY: confirm the path; the screen may be named Printer Configuration]
-2. Select the option to add a printer. [VERIFY: the button label, and whether the Cloud Printer step of the setup wizard opens this same form]
+1. Open the Retail Console and go to **Settings** > **Printer Settings**.
+2. Select the option to add a printer.
 3. Select your printer's model from **Printer Model**.
 4. Select your **Fulfillment Location** from **Printer Location**.
 
@@ -30,14 +30,13 @@ The **Printer Location** must match the **Fulfillment Location** in your brandin
 :::
 
 5. Enter the printer's MAC address in **MAC Address**, for example 00:11:62:1A:2B:3C.
-6. Select **FanVista** from **Source**. This sends FanVista orders to this printer. [VERIFY: the field may be labeled Auto Print by Order Type]
+6. Select **FanVista** from **Source**. This sends FanVista orders to this printer.
 7. Select **Save**.
 
-   [SCREENSHOT: the printer form with Printer Model, Printer Location, MAC Address and Source filled in, and Source set to FanVista highlighted]
 
 ## What happens next
 
-A docket prints on this printer each time a fan places an order with merchandise items. [VERIFY: whether the printer list shows an online status, and where]
+A docket prints on this printer each time a fan places an order with merchandise items.
 
 To confirm it worked, place a test order that includes a merchandise item. A docket prints at your **Fulfillment Location**. For the full test, see *Run a test order before your event*.
 

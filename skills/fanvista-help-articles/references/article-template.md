@@ -69,19 +69,57 @@ Questions as `###` headings, phrased the way a customer would ask, each answered
 
 Drop a section when it would be empty. Do not pad one to fill the template.
 
+## How much detail
+
+A reader should finish the article understanding the task, not just having clicked through it. For every setting or step that is not self-evident, cover:
+
+- **What it is**, in one plain sentence.
+- **What it changes** for the fan or for staff. "Fans are offered only the methods you select."
+- **How to choose**, when there is a choice: a short table of the options and who each suits, or a worked example.
+- **An example value** for anything typed.
+- **What depends on it** later.
+
+Add a short "Common questions" section when the topic raises questions the steps do not answer. Use tables for option combinations. Use a Tip where experience helps ("short pickup windows spread your orders").
+
+Length follows the task. A single-action how-to may be 300 words. A guide to a whole settings page is often 1,200 to 2,000 words, and that is right if every part helps. Cut repetition, not explanation.
+
+### Guide to a settings page
+
+When the PDF walks through one page with several sections, organise the article by the page's sections instead of one long numbered list:
+
+```markdown
+<Opening: what the page is for, how long it takes, one-time or per event.>
+
+## What you will set up
+<Table: section on the page | what you decide | what it means for your fans>
+
+## Before you start
+
+## Step 1: Open the <page name> page
+## Step 2: <First section, as a task>
+<One or two sentences on what this section is for. Numbered actions. Image. Table or tip where useful.>
+## Step 3: ...
+## Step N: Save and check your work
+
+## What happens next
+## Good to know
+## Common questions
+## If something goes wrong
+## Related articles
+```
+
+Number the actions from 1 inside each step section.
+
 ## Images
 
 - Take images from the workflow PDF (see SKILL.md step 5). Place each directly after the step it illustrates, indented 3 spaces so it stays inside the step.
 - Alt text says what the image shows and what to look at: `![Branding screen with Fulfillment Location selected](...)`. No "Screenshot of".
-- Use an image where the reader must find something, recognise a state, or check a result. Not for every step.
-- Where an image is needed and the PDF has none, or the PDF's image cannot be published, write `[SCREENSHOT: what it should show and what to highlight]` on its own line in the same position.
+- Use an image where the reader must find something, recognise a state, or check a result.
+- If a screen has no publishable image, write the step so it stands without one. Do not leave a placeholder.
 
-## Markers the writer must clear before publishing
+## Nothing unfinished in the article
 
-- `[SCREENSHOT: ...]` as above.
-- `[VERIFY: ...]` inline, right where the uncertain label or path appears. State exactly what to check.
-
-Both are deliberately loud so they cannot slip into a published page.
+The article is published as you deliver it. It never contains `[VERIFY]`, `[SCREENSHOT]`, `[TODO]`, questions to the writer, or "confirm with". SKILL.md step 6 says how to handle what you could not confirm; your notes on it go in the chat reply.
 
 ## Callouts
 
@@ -91,11 +129,10 @@ A callout ends a numbered list in Document360. Put it directly after its step an
 
 ## Details that are easy to get wrong
 
-- **Illustrative values** (a sample prefix, a sample time) are fine. Anything factual that is not in the PDF, the knowledge file or a source you checked is a guess: leave it out or mark it `[VERIFY]`, and list it in the reviewer notes.
+- **Illustrative values** (a sample prefix, a sample time) are fine. Anything factual that is not in the PDF, the knowledge file or a source you checked is a guess: leave it out, and mention it in your chat notes.
 - **Cross-links**: the other article's catalog title in italics, no URL. The publisher adds links in Document360.
 - **Titles and file names**: use the catalog title when the task matches a catalog article.
 - **Troubleshooting in a how-to**: keep "If something goes wrong" to the 3 to 5 failures specific to this task, then point to the matching troubleshooting article. This is the first section to trim when a page runs long.
-- **Length**: most how-tos land between 250 and 600 words. Past 900 it is probably two articles.
 
 ## Worked example
 
@@ -132,7 +169,7 @@ Turn on **Order Checkout** before you design the email receipt. The receipt temp
 4. Optional: Turn on **Delivered** to send a final confirmation when the order is handed over.
 5. If you take suite orders, turn on **Cart Checkout**. Suite owners receive a confirmation while their order is still open.
 6. Under **Channel**, turn on **Email**. Turn on **SMS** if your venue sends text messages.
-7. Turn on **Add QR Code in Email**. Fans show this code at the counter to collect their order. [VERIFY: confirm whether this control is a toggle or a checkbox]
+7. Turn on **Add QR Code in Email**. Fans show this code at the counter to collect their order.
 8. Select **Save**.
 
    ![Notifications screen with Order Checkout, Ready, Email and Add QR Code in Email turned on](images/set-up-customer-notifications-for-fanvista/02-notifications-complete.png)

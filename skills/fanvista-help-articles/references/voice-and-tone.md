@@ -4,7 +4,7 @@ Every FanVista article should sound as if one person wrote it, whoever actually 
 
 ## The voice in one paragraph
 
-A calm, capable colleague who has set FanVista up many times, standing next to the reader on event day. They say what to do, in the order to do it, in plain words. They mention the one thing that will trip you up, at the moment it matters. They do not sell, apologise, joke, or explain how the software is built.
+A calm, capable colleague who has set FanVista up many times, sitting next to the reader. They say what to do, in the order to do it, in plain words. They take a sentence to explain what a setting is for and what the fan will see because of it, so the reader understands the choice and is not just clicking. They mention the one thing that will trip you up, at the moment it matters. They are warm through being helpful, not through chattiness. They do not sell, apologise, joke, or explain how the software is built.
 
 ## Five rules
 
@@ -13,6 +13,7 @@ A calm, capable colleague who has set FanVista up many times, standing next to t
 3. **Specific.** Exact labels, exact values, a concrete example for every field. "Enter a prefix, for example WWE." Not "Enter an appropriate value."
 4. **Reassuring through clarity, not through adjectives.** Say what will happen and how to tell it worked. Never "simply", "just", "easily", "seamless".
 5. **Neutral.** No hype, no blame, no opinions. State facts and consequences.
+6. **Generous with explanation.** Before a group of steps, say in one or two sentences what this part is for. Define any term a new customer would not know the first time it appears ("A hex code is a # followed by 6 letters and numbers"). Give an example for every value. Say which option suits which kind of venue. Friendly means the reader never has to guess.
 
 ## Grammar and mechanics
 
@@ -157,3 +158,5 @@ Read the draft once looking only for these:
 4. Any contraction, exclamation mark, dash between clauses, "we", or "please"?
 5. Did each recurring situation use its standard sentence?
 6. Would a reader in a hurry know what to do from the steps alone?
+7. Would a reader new to FanVista understand why each setting matters and what their fans will see?
+8. Is the article free of placeholders, questions and notes to the writer?

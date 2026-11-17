@@ -1,5 +1,7 @@
 # Example articles
 
-Three finished articles in the house voice, one per kind of reader: a venue admin, fulfillment staff, and fans. Read them to hear the voice before drafting.
+`set-up-fanvista-branding.md` is the model: a guide to a whole settings page, written from a workflow PDF, at the level of detail every article should reach. Its images are not bundled; the paths show where they sit.
 
-They were written without a workflow PDF, so they carry more `[VERIFY]` and `[SCREENSHOT]` markers than an article written from one, and they contain no images. Copy their tone and structure, not their marker count.
+The other three show the same voice for different readers: a venue admin how-to, a fulfillment staff how-to, and a fan how-to. They are shorter because they were written without a PDF.
+
+None of them contains placeholders or notes to the writer. Neither should yours.

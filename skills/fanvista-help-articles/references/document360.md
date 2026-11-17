@@ -49,11 +49,21 @@ The first bracket is the callout type (`Info`, `Warning`, `Error`); the second i
 
 This syntax is from memory of Document360's editor and was not confirmed against a live project. The first time an article is pasted, ask the user whether callouts rendered; if not, record the correct syntax here.
 
-Do not use the `:::(Internal)` private-note block for `[VERIFY]` or `[SCREENSHOT]` markers. Keep them as visible bracketed text so they cannot be published by accident.
+## Getting the images into Document360
+
+Document360 hosts its own images, so a Markdown file that points at local image files shows broken pictures when pasted. Every article is therefore delivered in three forms, built by `scripts/build_article.py`:
+
+| File | Use |
+| --- | --- |
+| `<slug>.docx` | **The one to publish from.** Word file with all images embedded. In Document360, create the article by importing the Word file; the text, tables and images arrive together. Callouts arrive as shaded boxes; convert them to Document360 callouts if wanted. |
+| `<slug>.html` | Self-contained preview with all images embedded. Open it in a browser to review, or send it for sign-off. Selecting all and pasting into the Advanced WYSIWYG editor also carries the formatting. |
+| `<slug>.md` + `images/<slug>/` | The source. For the Markdown editor: upload the images folder to Document360 Drive, paste the Markdown, and re-point each image. Also what you edit when the article changes; rebuild the other two afterwards. |
+
+Tell the writer to publish from the `.docx` unless they say they prefer another route. The Word import route was not confirmed against a live Document360 project; the first time, ask the writer whether the images arrived, and record the answer here.
 
 ## Other rules
 
 - **Tables**: standard pipe tables work in the Markdown editor. They do **not** render in the Advanced WYSIWYG editor.
 - **Links between articles**: write the other article's catalog title in italics with no URL. The publisher links it in Document360, where the URL depends on their category structure.
-- **Images**: save them beside the article in `images/<article-slug>/`, named `NN-short-description.png` in order of appearance, and reference them with a relative path: `![Alt text](images/<article-slug>/01-branding-screen.png)`. The publisher uploads the folder to Document360's Drive and re-points each image; the relative paths make it obvious which file goes where. PNG only. Where no usable image exists, leave a `[SCREENSHOT: ...]` marker.
+- **Images**: save them beside the article in `images/<article-slug>/`, named `NN-short-description.png` in order of appearance, and reference them with a relative path: `![Alt text](images/<article-slug>/01-branding-screen.png)`. The publisher uploads the folder to Document360's Drive and re-points each image; the relative paths make it obvious which file goes where. PNG only. Where no usable image exists, write the step so it stands without one.
 - **Editor choice**: a Document360 article can be converted from Markdown to the Advanced WYSIWYG editor but not back. If the user says their project uses the Advanced WYSIWYG editor, deliver clean HTML instead (headings from `<h2>`, lists, `<table>`, no inline styles), tell them tables and callouts may need rebuilding with the toolbar, and say so in the reviewer notes.

@@ -21,21 +21,20 @@ On event day, each time a docket prints at your counter.
 
 1. A docket prints at your counter. Take it to the stock area.
 2. Pick the items listed on the docket.
-3. Scan the QR code on the docket with OrderUp. The order opens. [VERIFY: the name of the scan control in OrderUp]
-4. Pack the items in a bag. OrderUp prints 2 receipts on your receipt printer. [VERIFY: whether the receipts print automatically or staff select a control to print them]
+3. Scan the QR code on the docket with OrderUp. The order opens.
+4. Pack the items in a bag. OrderUp prints 2 receipts on your receipt printer.
 5. Put the customer receipt inside the bag.
 6. Put the delivery receipt on the outside of the bag, with its QR code showing.
 
-   [SCREENSHOT: a packed bag with the delivery receipt and its QR code visible on the outside]
 
 7. Take the bag to the staging area.
-8. Select **Ready**. The fan receives a message that the order is ready. [VERIFY: how staff mark an order Ready and Delivered in OrderUp, for example a button on the order]
+8. Select **Ready**. The fan receives a message that the order is ready.
 9. The fan shows a QR code at the counter. Scan it. The order opens.
 10. Scan the QR code on the bag's delivery receipt. This confirms that the bag matches the order.
 11. Hand the bag to the fan.
 12. Select **Delivered**.
 
-For an in-seat delivery order, follow steps 1 to 6. Then take the bag to the seat section printed on the docket. [VERIFY: for in-seat delivery, whether staff select Ready, whether a QR code is scanned at the seat, and when staff select Delivered]
+For an in-seat delivery order, follow steps 1 to 6. Then take the bag to the seat section printed on the docket.
 
 ## What happens next
 
