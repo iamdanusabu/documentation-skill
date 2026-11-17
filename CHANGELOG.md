@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.1 - 2026-11-17
+
+- FanVista pack: Sponsorships screen confirmed from a workflow PDF (scope options, multiple featured products, field limits).
+
 ## 2.1.0 - 2026-11-17
 
 - Leaner: the guides the skill loads for every article are about 60% shorter, and long files are read by section.
